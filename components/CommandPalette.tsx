@@ -8,24 +8,19 @@ import {
     type Variants,
 } from "framer-motion";
 import {
-    FileText,
     Search,
     Settings,
     User,
     X,
     Home,
     Briefcase,
-    FlaskConical,
     Mail,
     Moon,
     Sun,
     Copy,
     Github,
-    Twitter,
     Linkedin,
-    AtSign,
-    LayoutTemplate,
-    Beaker
+    AtSign
 } from "lucide-react";
 import { useMemo, useState, useEffect } from "react";
 
@@ -91,35 +86,12 @@ export function CommandPalette({ onNavigate, toggleTheme, isDark }: CommandPalet
             action: () => onNavigate("projects"),
         },
         {
-            id: "experiments",
-            icon: FlaskConical,
-            label: "Open Kanban Board",
-            shortcut: "K",
-            description: "Check out the Kanban experiment",
-            action: () => onNavigate("kanban"),
-        },
-        {
-            id: "blogs",
-            icon: FileText,
-            label: "Read Blog",
-            shortcut: "B",
-            description: "Read my latest articles",
-            action: () => onNavigate("blogs"),
-        },
-        {
             id: "contact",
             icon: Mail,
             label: "Contact Me",
             shortcut: "C",
             description: "Get in touch",
             action: () => onNavigate("contact"),
-        },
-        {
-            id: "experiments-new", // Added new experiments item
-            icon: Beaker,
-            label: "Experiments",
-            description: "Explore various experiments",
-            action: () => onNavigate("experiments"),
         },
         {
             id: "theme",
@@ -136,7 +108,7 @@ export function CommandPalette({ onNavigate, toggleTheme, isDark }: CommandPalet
             shortcut: "E",
             description: "Copy my email address to clipboard",
             action: () => {
-                navigator.clipboard.writeText("syednotion@gmail.com");
+                navigator.clipboard.writeText("baningphilip1@gmail.com");
                 alert("Email copied to clipboard!");
             },
         },
@@ -146,28 +118,28 @@ export function CommandPalette({ onNavigate, toggleTheme, isDark }: CommandPalet
             icon: Github,
             label: "GitHub",
             description: "Check out my open source work",
-            action: () => window.open("https://github.com/syedsubhan", "_blank"),
+            action: () => window.open("https://github.com/Alanperry1", "_blank"),
         },
         {
             id: "social-twitter",
-            icon: Twitter,
-            label: "Twitter / X",
-            description: "Follow me for updates",
-            action: () => window.open("https://x.com/subhan", "_blank"),
+            icon: User,
+            label: "Research Publication",
+            description: "Read my BEC detection paper",
+            action: () => window.open("https://www.researchgate.net/profile/Philip-Baning", "_blank"),
         },
         {
             id: "social-linkedin",
             icon: Linkedin,
             label: "LinkedIn",
             description: "Connect with me professionally",
-            action: () => window.open("https://linkedin.com/in/syedsubhan", "_blank"),
+            action: () => window.open("https://linkedin.com/in/pbaning", "_blank"),
         },
         {
             id: "social-email",
             icon: AtSign,
             label: "Email",
             description: "Send me a message directly",
-            action: () => window.open("mailto:syednotion@gmail.com", "_blank"),
+            action: () => window.open("mailto:baningphilip1@gmail.com", "_blank"),
         },
     ], [onNavigate, toggleTheme, isDark]);
 
@@ -340,7 +312,7 @@ export function CommandPalette({ onNavigate, toggleTheme, isDark }: CommandPalet
                                                                 </span>
                                                                 <div className="flex flex-col">
                                                                     <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                                                                        {cmd.id === 'social-email' && hoveredCommandId === 'social-email' ? "syednotion@gmail.com" : cmd.label}
+                                                                        {cmd.id === 'social-email' && hoveredCommandId === 'social-email' ? "baningphilip1@gmail.com" : cmd.label}
                                                                     </span>
                                                                     <span className="text-xs text-gray-500 dark:text-gray-500">
                                                                         {cmd.description}

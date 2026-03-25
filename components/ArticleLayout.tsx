@@ -1,13 +1,10 @@
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Timeline from './Timeline';
 import { DynamicNavigation } from './DynamicNavigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { PageVisitsFooter } from './PageVisitsFooter';
-import { CopyButton } from './ui/CopyButton';
 import BackIcon from './icons/BackIcon';
-import FilledCheckedIcon from './icons/FilledCheckedIcon';
 
 export interface ArticleSection {
     id: string;
@@ -78,20 +75,6 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({
         }
     };
 
-    const [toasts, setToasts] = useState<{ id: number }[]>([]);
-
-    const handleCopyStatus = (isCopied: boolean) => {
-        if (isCopied) {
-            const newId = Date.now();
-            setToasts(prev => [...prev, { id: newId }]);
-
-            // Remove individual toast after 3 seconds
-            setTimeout(() => {
-                setToasts(prev => prev.filter(t => t.id !== newId));
-            }, 3000);
-        }
-    };
-
     return (
         <>
             <DynamicNavigation
@@ -125,15 +108,6 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({
                         </div>
                         <span className="text-xs font-medium">Back</span>
                     </button>
-
-                    <CopyButton
-                        content={typeof window !== 'undefined' ? window.location.href : ''}
-                        onCopiedChange={handleCopyStatus}
-                        variant="ghost"
-                        className="pointer-events-auto rounded-full hover:bg-black/5 dark:hover:bg-white/10 h-8 px-3"
-                    >
-                        <span className="text-xs font-medium">Copy Link</span>
-                    </CopyButton>
                 </div>
 
                 {/* Helper Header Component to keep code clean */}
@@ -190,7 +164,6 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({
 
                     {/* Visitor Counter (Center) */}
                     <div className="order-1 md:order-2 shrink-0">
-                        <PageVisitsFooter />
                     </div>
 
                     {/* Next Button (Right) */}
@@ -210,69 +183,7 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({
                     </div>
 
                 </div>
-
-
-
             </main>
-
-            {/* Stacked Toast Notifications */}
-            <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end pointer-events-none">
-                <AnimatePresence mode="popLayout">
-                    {toasts.map((toast, index) => {
-                        // Reverse index to stack newest on top (visually front)
-                        // Actually, we want newest at the bottom of the stack visually?
-                        // IOS: List, but when collapsed they stack.
-                        // Let's do a "Card Stack" where newest is front, older are behind and scaled down.
-
-                        const offset = toasts.length - 1 - index; // 0 for newest
-                        const scale = 1 - offset * 0.05;
-                        const y = offset * 10; // Move older ones down/up? Usually up or behind.
-                        // Let's stack them going UP
-                        const yDisplay = -offset * 15;
-                        const opacity = 1 - offset * 0.2;
-
-                        if (offset > 2) return null; // Only show top 3
-
-                        return (
-                            <motion.div
-                                key={toast.id}
-                                layout
-                                initial={{ opacity: 0, y: 40, scale: 0.9 }}
-                                animate={{
-                                    opacity: opacity,
-                                    y: yDisplay,
-                                    scale: scale,
-                                    zIndex: 100 - offset
-                                }}
-                                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                                className="absolute bottom-0 right-0 p-4 pr-12 w-80 pointer-events-auto
-                                     bg-white/80 dark:bg-[#1c1c1e]/80 backdrop-blur-xl 
-                                     border border-black/5 dark:border-white/10 
-                                     rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]
-                                     flex items-start gap-3"
-                            >
-                                <div className="mt-0.5 pointer-events-none">
-                                    <FilledCheckedIcon
-                                        size={28}
-                                        className="text-black dark:text-white shadow-sm rounded-md"
-                                        tickClassName="fill-white dark:fill-black"
-                                    />
-                                </div>
-                                <div className="flex flex-col gap-0.5">
-                                    <span className="font-semibold text-[13px] text-gray-900 dark:text-white leading-tight">Copied</span>
-                                    <span className="text-[13px] text-gray-500 dark:text-gray-400 leading-tight">Link added to clipboard</span>
-                                </div>
-                                <button
-                                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
-                                    onClick={() => setToasts(prev => prev.filter(t => t.id !== toast.id))}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                </button>
-                            </motion.div>
-                        )
-                    })}
-                </AnimatePresence>
-            </div>
         </>
     );
 };

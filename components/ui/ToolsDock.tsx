@@ -12,15 +12,17 @@ interface Tool {
 }
 
 const tools: Tool[] = [
-    { name: 'Discord', icon: '/AppIcons/discord.png', bg: 'bg-[#5865F2]/10' },
-    { name: 'VS Code', icon: '/AppIcons/vscode.png', bg: 'bg-[#007ACC]/10' },
-    { name: 'Medium', icon: '/AppIcons/medium.png', bg: 'bg-black dark:bg-white' },
-    { name: 'Notion', icon: '/AppIcons/notion.png', bg: 'bg-black dark:bg-white' },
-    { name: 'Brave', icon: '/AppIcons/brave.png', bg: 'bg-[#FB542B]/10' }, // Center
-    { name: 'Motion.dev', icon: '/AppIcons/motion.png', bg: 'bg-[#0055FF]/10' },
-    { name: 'Figma', icon: '/AppIcons/figma.png', bg: 'bg-[#0055FF]/10' },
-    { name: 'Gumroad', icon: '/AppIcons/gumroad.png', bg: 'bg-[#FF90E8]/10' },
-    { name: 'Reddit', icon: '/AppIcons/reddit.png', bg: 'bg-[#5E6AD2]/10' },
+    { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', bg: 'bg-[#2496ED]/10' },
+    { name: 'Kubernetes', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg', bg: 'bg-[#326CE5]/10' },
+    { name: 'GitHub Actions', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg', bg: 'bg-[#2088FF]/10' },
+    { name: 'Postman', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg', bg: 'bg-[#FF6C37]/10' },
+    { name: 'VS Code', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg', bg: 'bg-[#007ACC]/10' }, // Center
+    { name: 'Jupyter', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg', bg: 'bg-[#F37626]/10' },
+    { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg', bg: 'bg-[#FF9900]/10' },
+    { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', bg: 'bg-[#4169E1]/10' },
+    { name: 'Proxmox', icon: 'https://cdn.simpleicons.org/proxmox/E57000', bg: 'bg-[#E57000]/10' },
+    { name: 'CUDA', icon: '/AppIcons/cuda-logo.svg', bg: 'bg-[#76B900]/10' },
+    { name: 'SonarQube', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sonarqube/sonarqube-original.svg', bg: 'bg-[#4E9BCD]/10' },
 ];
 
 export const ToolsDock: React.FC = () => {
@@ -28,7 +30,7 @@ export const ToolsDock: React.FC = () => {
     const textRef = useRef<HTMLDivElement>(null);
     const iconsRef = useRef<Array<HTMLDivElement | null>>([]);
 
-    const headerText = "{ Crafting with my Core Tools }";
+    const headerText = "{ Developer Tools & Infrastructure }";
     const headerChars = headerText.split('');
     const centerIndex = 4; // Brave
 
@@ -47,12 +49,12 @@ export const ToolsDock: React.FC = () => {
 
 
 
-            // 1. Animate Text (Split char stagger)
+            // 1. Animate Text (Split char stagger left → right)
             const chars = textRef.current?.children;
             if (chars) {
                 tl.fromTo(chars,
-                    { y: 30, opacity: 0, skewY: 5 },
-                    { y: 0, opacity: 1, skewY: 0, duration: 1, stagger: { amount: 0.8, from: "center" }, ease: "power2.out" },
+                    { x: -40, opacity: 0, skewX: 8 },
+                    { x: 0, opacity: 1, skewX: 0, duration: 1, stagger: { amount: 0.9, from: "start" }, ease: "power2.out" },
                     0
                 );
             }
@@ -69,7 +71,7 @@ export const ToolsDock: React.FC = () => {
                         y: 0,
                         opacity: 1,
                         rotationX: 0,
-                        scale: index === centerIndex ? 1.3 : 1, // Increased scale for center for emphasis
+                        scale: 1,
                         duration: 1.5,
                         ease: "power2.out"
                     },
@@ -83,7 +85,7 @@ export const ToolsDock: React.FC = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="w-full flex flex-col items-center justify-center overflow-hidden relative py-2 md:py-4">
+        <div ref={containerRef} className="w-full flex flex-col items-center justify-center relative py-2 md:py-4">
             <div className="flex flex-col items-center gap-6 w-full max-w-6xl px-4">
 
                 <h2 ref={textRef} className="text-[clamp(0.8rem,4vw,1.8rem)] font-medium text-gray-900 dark:text-gray-100 font-mono text-center leading-tight">
@@ -94,14 +96,14 @@ export const ToolsDock: React.FC = () => {
                     ))}
                 </h2>
 
-                <div className="flex items-center justify-center gap-3 md:gap-5 px-4 py-8" style={{ perspective: '1000px' }}>
+                <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5 px-4 py-4 w-full" style={{ perspective: '1000px' }}>
                     {tools.map((tool, index) => (
                         <div
                             key={tool.name}
                             ref={(el) => { iconsRef.current[index] = el; }}
                             className={`
                             relative group
-                            w-[clamp(2rem,6vw,4rem)] h-[clamp(2rem,6vw,4rem)]
+                            w-14 h-14 md:w-16 md:h-16
                             rounded-2xl
                             flex items-center justify-center 
                             bg-white dark:bg-white/5
@@ -115,7 +117,7 @@ export const ToolsDock: React.FC = () => {
                             <img
                                 src={tool.icon}
                                 alt={tool.name}
-                                className="w-full h-full object-cover rounded-2xl transform transition-transform duration-300 group-hover:scale-105"
+                                className="w-[70%] h-[70%] object-contain transform transition-transform duration-300 group-hover:scale-110"
                             />
 
                             <div className="absolute -bottom-10 opacity-0 group-hover:opacity-100 transition-opacity text-xs font-semibold text-gray-500 dark:text-gray-300 pointer-events-none whitespace-nowrap bg-white dark:bg-gray-800 px-2 py-1 rounded shadow-sm border border-gray-100 dark:border-gray-700 z-50">

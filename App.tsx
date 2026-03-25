@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { PortfolioHome } from './components/PortfolioHome';
 import { BlogPage } from './components/BlogPage';
-import { BlogListPage } from './components/BlogListPage';
 import { ProjectsPage } from './components/ProjectsPage';
 import { ContactPage } from './components/ContactPage';
 import { Footer } from './components/Footer';
 import { AnimatePresence } from 'framer-motion';
 import { Preloader } from './components/Preloader';
-import { KanbanBoard } from './components/KanbanBoard';
 import { CommandPalette } from './components/CommandPalette';
-import { ExperimentsPage } from './components/ExperimentsPage';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -158,15 +155,6 @@ function App() {
           />
         )}
 
-        {currentView === 'blogs' && (
-          <BlogPage
-            onNavigate={handleNavigate}
-            toggleTheme={toggleTheme}
-            isDark={isDark}
-            activeArticleId={activeArticle}
-          />
-        )}
-
         {currentView === 'contact' && (
           <ContactPage
             onNavigate={handleNavigate}
@@ -175,13 +163,6 @@ function App() {
           />
         )}
 
-        {currentView === 'kanban' && (
-          <KanbanBoard onNavigate={handleNavigate} />
-        )}
-
-        {currentView === 'experiments' && (
-          <ExperimentsPage onNavigate={handleNavigate} />
-        )}
       </div>
 
       {currentView !== 'home' && <Footer />}

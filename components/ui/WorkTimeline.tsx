@@ -67,13 +67,12 @@ const TimelineItem = ({ role, company, date, desc, details, logo, index }: Exper
                 <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)]">
                     <div className="overflow-hidden">
                         <div className="pt-3 pl-2">
-                            {/* Description moved here */}
-                            <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm leading-relaxed mb-3 text-pretty transition-colors duration-300 max-w-2xl">
-                                {desc}
-                            </p>
-
                             <div className="pl-3 border-l-[1.5px] border-blue-500/20 ml-1">
                                 <ul className="space-y-2 pb-2">
+                                    <li className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed pl-2 relative flex items-start gap-2 transition-colors duration-300">
+                                        <span className="shrink-0 mt-1.5 w-1 h-1 rounded-full bg-blue-500" />
+                                        <span>{desc}</span>
+                                    </li>
                                     {details?.map((item, i) => (
                                         <li
                                             key={i}

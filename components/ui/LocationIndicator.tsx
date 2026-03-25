@@ -11,14 +11,13 @@ export const LocationIndicator = () => {
         // Update time every second
         const updateTime = () => {
             const now = new Date();
-            // Get IST time
-            const istTime = now.toLocaleTimeString('en-US', {
-                timeZone: 'Asia/Kolkata',
+            const localTime = now.toLocaleTimeString('en-US', {
+                timeZone: 'America/Chicago',
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: true
             });
-            setTime(istTime);
+            setTime(localTime);
         };
 
         updateTime();
@@ -33,7 +32,7 @@ export const LocationIndicator = () => {
             onMouseLeave={() => setIsHovered(false)}
         >
             <span className="cursor-help decoration-dashed underline underline-offset-4 decoration-gray-400 dark:decoration-gray-500 hover:decoration-blue-500 dark:hover:decoration-blue-400 transition-colors">
-                from India
+                from Grambling, LA
             </span>
 
             <AnimatePresence>
@@ -51,15 +50,15 @@ export const LocationIndicator = () => {
                         <div className="flex flex-col items-center gap-2">
                             {/* Flag and Label */}
                             <div className="flex items-center gap-2">
-                                <span className="text-xl">🇮🇳</span>
-                                <span className="text-xs font-semibold text-gray-800 dark:text-gray-200">Based in India</span>
+                                <span className="text-xl">🇺🇸</span>
+                                <span className="text-xs font-semibold text-gray-800 dark:text-gray-200">Based in Grambling, LA</span>
                             </div>
 
                             {/* Time */}
                             <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-white/5 rounded-md w-full justify-center">
                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                                 <span className="text-xs font-mono font-medium text-gray-600 dark:text-gray-400">
-                                    {time} IST
+                                    {time} CT
                                 </span>
                             </div>
                         </div>

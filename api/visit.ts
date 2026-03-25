@@ -17,7 +17,7 @@ export default async function handler(req: any, res: any) {
 
     try {
         const response = await fetch(
-            "https://api.counterapi.dev/v2/subhan-uddins-team-2785/first-counter-2785/up",
+            "https://api.counterapi.dev/v2/baning-philip-portfolio/visitor-counter/up",
             {
                 method: 'POST', // Ensure we use POST as discovered
                 headers: {
@@ -32,7 +32,7 @@ export default async function handler(req: any, res: any) {
 
         if (!response.ok) {
             // If increment fails (e.g. rate limit), try to get the current count
-            const getResponse = await fetch("https://api.counterapi.dev/v2/subhan-uddins-team-2785/first-counter-2785");
+            const getResponse = await fetch("https://api.counterapi.dev/v2/baning-philip-portfolio/visitor-counter");
             if (getResponse.ok) {
                 const data = await getResponse.json();
                 return res.status(200).json({ count: data?.data?.up_count ?? 0 });

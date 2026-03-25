@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { DynamicNavigation } from './DynamicNavigation';
 import { RainbowButton } from './RainbowButton';
-import { PageVisitsFooter } from './PageVisitsFooter';
 
 interface ContactPageProps {
     onNavigate: (view: string) => void;
@@ -40,20 +39,20 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, toggleThem
 
                         <div className="space-y-8 text-lg text-gray-600 dark:text-gray-300">
                             <p>
-                                I'm currently available for freelance projects and open to full-time opportunities.
+                                I'm open to software engineering, machine learning, and cybersecurity internship opportunities.
                             </p>
 
                             <div>
                                 <div className="text-sm font-mono text-gray-400 mb-1 uppercase tracking-wider">Email</div>
-                                <a href="mailto:hello@syedsubhan.com" className="text-xl hover:text-blue-500 transition-colors">hello@syedsubhan.com</a>
+                                <a href="mailto:baningphilip1@gmail.com" className="text-xl hover:text-blue-500 transition-colors">baningphilip1@gmail.com</a>
                             </div>
 
                             <div>
                                 <div className="text-sm font-mono text-gray-400 mb-1 uppercase tracking-wider">Socials</div>
                                 <div className="flex gap-6">
-                                    <a href="#" className="hover:text-blue-500 transition-colors">Twitter</a>
-                                    <a href="#" className="hover:text-blue-500 transition-colors">LinkedIn</a>
-                                    <a href="#" className="hover:text-blue-500 transition-colors">GitHub</a>
+                                    <a href="https://linkedin.com/in/pbaning" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">LinkedIn</a>
+                                    <a href="https://github.com/Alanperry1" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">GitHub</a>
+                                    <a href="https://www.researchgate.net/publication/398019660" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">Research</a>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +103,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, toggleThem
 
                 </div>
 
-                <PageVisitsFooter />
 
             </main>
         </>

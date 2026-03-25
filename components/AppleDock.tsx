@@ -4,8 +4,6 @@ import { cn, triggerHaptic } from "../lib/utils";
 import {
   HomeIcon,
   GithubIcon,
-  ArticleIcon,
-  TwitterXIcon,
   BrightnessDownIcon,
   MoonIcon
 } from "./AnimatedIcons";
@@ -22,8 +20,6 @@ export const AppleDock: React.FC<AppleDockProps> = ({ visible, onNavigate, toggl
   const items = [
     { title: 'Home', icon: HomeIcon, onClick: () => { triggerHaptic(); onNavigate('home'); } },
     { title: 'GitHub', icon: GithubIcon, onClick: () => { triggerHaptic(); window.open('https://github.com', '_blank'); } },
-    { title: 'Articles', icon: ArticleIcon, onClick: () => { triggerHaptic(); onNavigate('blogs'); } },
-    { title: 'Twitter', icon: TwitterXIcon, onClick: () => { triggerHaptic(); window.open('https://twitter.com', '_blank'); } },
     {
       title: isDark ? 'Light Mode' : 'Dark Mode',
       icon: isDark ? BrightnessDownIcon : MoonIcon,

@@ -19,7 +19,7 @@ export default async function handler(req: any, res: any) {
 
 
             const response = await fetch(
-                "https://api.counterapi.dev/v2/subhan-uddins-team-2785/first-counter-2785/up",
+                "https://api.counterapi.dev/v2/baning-philip-portfolio/visitor-counter/up",
                 {
                     method: 'GET',
                     headers: {
@@ -43,7 +43,7 @@ export default async function handler(req: any, res: any) {
     // Handle GET (Get Stats)
     if (req.method === 'GET') {
         try {
-            const response = await fetch("https://api.counterapi.dev/v2/subhan-uddins-team-2785/first-counter-2785");
+            const response = await fetch("https://api.counterapi.dev/v2/baning-philip-portfolio/visitor-counter");
 
             if (!response.ok) {
                 throw new Error(`Upstream API failed: ${response.status}`);

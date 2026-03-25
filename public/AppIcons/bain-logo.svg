@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200">
+  <rect width="280" height="200" fill="white"/>
+  <!-- BAIN text -->
+  <text x="20" y="110" font-family="Arial Black, Arial, sans-serif" font-size="78" font-weight="900" fill="#CC0000" letter-spacing="2">BAIN</text>
+  <!-- & COMPANY text -->
+  <text x="20" y="160" font-family="Arial Black, Arial, sans-serif" font-size="36" font-weight="900" fill="#CC0000" letter-spacing="1">&amp; COMPANY</text>
+  <!-- Compass circle -->
+  <circle cx="248" cy="112" r="30" fill="none" stroke="#CC0000" stroke-width="7"/>
+  <!-- Compass needle (triangle pointing upper-right) -->
+  <polygon points="248,82 270,130 235,118" fill="#CC0000"/>
+  <!-- Gap in circle top-right -->
+  <path d="M262 88 A30 30 0 0 1 278 112" fill="none" stroke="white" stroke-width="9"/>
+</svg>

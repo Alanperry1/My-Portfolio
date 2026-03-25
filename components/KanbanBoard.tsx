@@ -387,7 +387,7 @@ export function KanbanBoard({ onNavigate }: { onNavigate?: (view: string) => voi
     useEffect(() => {
         document.title = "Kanban | Portfolio";
         return () => {
-            document.title = "Portfolio | Creative Developer";
+            document.title = "Portfolio | Software Engineer";
         };
     }, []);
 

@@ -17,7 +17,7 @@ export const Footer = () => {
                     </a>
                     <div className="flex items-center gap-1">
                         <span>Designed & Developed by</span>
-                        <span className="text-gray-900 dark:text-white font-bold ml-1">Syed Subhan</span>
+                        <span className="text-gray-900 dark:text-white font-bold ml-1">Baning Philip Amponsah</span>
                     </div>
                 </div>
 

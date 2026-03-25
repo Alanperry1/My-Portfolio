@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { DynamicNavigation } from './DynamicNavigation';
-import { PageVisitsFooter } from './PageVisitsFooter';
 import { PixelCard } from './PixelCard';
 
 interface ProjectsPageProps {
@@ -13,33 +12,33 @@ interface ProjectsPageProps {
 
 const PROJECTS = [
     {
-        title: "Shinrai",
-        desc: "A Cloud-Native Platform designed for high-scale enterprise deployments. Implements automated CI/CD pipelines using AWS CodePipeline and Docker.",
-        tags: ["AWS", "Docker", "Kubernetes", "React"],
+        title: "RAG Pipeline",
+        desc: "Built a retrieval-augmented generation pipeline integrating document parsing, vector database management, and semantic retrieval to generate context-aware responses, improving LLM answer accuracy by 35%.",
+        tags: ["LangChain", "FAISS", "OpenAI API", "Python"],
         image: "https://picsum.photos/seed/shinrai/600/400"
     },
     {
-        title: "Aizen Verse",
-        desc: "Modern Anime Streaming Platform featuring adaptive HLS streaming, real-time user chat, and a recommendation engine built with Python.",
-        tags: ["React", "Vite", "Python", "HLS"],
+        title: "Distributed Key-Value Store",
+        desc: "Built a production-grade distributed key-value store with quorum replication, consistent hashing, gossip protocol, and custom storage engine for fault tolerance and crash recovery.",
+        tags: ["Rust", "Tokio", "gRPC", "Protocol Buffers"],
         image: "https://picsum.photos/seed/aizen/600/400"
     },
     {
-        title: "NO₂ Prediction System",
-        desc: "Machine Learning driven system utilizing LSTM networks to predict Nitrogen Dioxide levels in urban environments with 94% accuracy.",
-        tags: ["Python", "TensorFlow", "Flask", "Data Sci"],
+        title: "FeedFlow",
+        desc: "Built a serverless feedback analytics pipeline with AI sentiment analysis, multi-factor priority scoring, and similarity clustering, achieving 95% classification accuracy.",
+        tags: ["Cloudflare Workers", "D1", "TypeScript", "React"],
         image: "https://picsum.photos/seed/no2/600/400"
     },
     {
-        title: "Liquid UI",
-        desc: "An experimental UI library focusing on fluid, physics-based interactions using Framer Motion and WebGL shaders.",
-        tags: ["TypeScript", "WebGL", "Framer Motion"],
+        title: "Eye Prescription System",
+        desc: "Developed an AI-powered eye prescription management system integrating Mailjet and Perplexity AI for automated communication and insight generation.",
+        tags: ["React", "Node.js", "Express", "PostgreSQL"],
         image: "https://picsum.photos/seed/liquid/600/400"
     },
     {
-        title: "Echo Analytics",
-        desc: "Real-time dashboard for visualizing social media sentiment analysis. Processes thousands of tweets per second.",
-        tags: ["Next.js", "D3.js", "Redis"],
+        title: "Forex Trading Bot",
+        desc: "Built a trading system that analyzed 1.5GB of forex data to identify 1.5K+ profitable setups and achieve 26% ROI.",
+        tags: ["NumPy", "Pandas", "Chart.js"],
         image: "https://picsum.photos/seed/echo/600/400"
     }
 ];
@@ -76,7 +75,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, toggleTh
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl font-light"
                     >
-                        A collection of projects exploring the intersection of design, engineering, and data science.
+                        A collection of software, cloud, and machine learning projects focused on scalability, security, and applied AI.
                     </motion.p>
                 </div>
 
@@ -125,7 +124,6 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, toggleTh
                     ))}
                 </div>
 
-                <PageVisitsFooter />
 
             </main>
         </>

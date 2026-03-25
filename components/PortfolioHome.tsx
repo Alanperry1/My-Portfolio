@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Github, Eye, ArrowRight, FileText, ChevronDown, ChevronRight, Beaker, Copy, Check } from 'lucide-react';
+import { ArrowUpRight, Github, Eye, ArrowRight, FileText, ChevronDown, ChevronRight, Copy, Check } from 'lucide-react';
 
 import { cn, triggerHaptic } from '../lib/utils';
 import { ScrollReveal } from './ScrollReveal';
@@ -14,12 +14,10 @@ import { RainbowButton } from './RainbowButton';
 import { NativeTypewriter } from './ui/NativeTypewriter';
 
 
-import { PageVisitsFooter } from './PageVisitsFooter';
 import { NativeMagnetic } from './ui/NativeMagnetic';
 import profilePic from '../XPFP.jpg';
 import { SKILLS } from './ArraySkills';
 import { ProjectCard } from './ui/ProjectCard'; // Import new ProjectCard
-import { PreviewLinkCard } from './ui/PreviewLinkCard';
 import { SkillsMarquee } from './ui/SkillsMarquee';
 import { GitHubStarsButton } from './ui/GitHubStarsButton';
 import { SkillIcon } from './ui/SkillIcon';
@@ -37,36 +35,151 @@ interface PortfolioHomeProps {
 const SECTIONS = [
     { id: 'about', title: 'About' },
     { id: 'work', title: 'Work Experience' },
+    { id: 'education', title: 'Education' },
+    { id: 'activities', title: 'Activities' },
     { id: 'skills', title: 'Tech Stack' },
-    { id: 'articles', title: 'Articles' },
     { id: 'projects', title: 'Projects' },
-    { id: 'experiments', title: 'Experiments' },
     { id: 'contact', title: 'Contact' },
 ];
 
 const EXPERIENCE_DATA = [
     {
-        role: "AI/ML Intern",
-        company: "IBM SkillsBuild",
-        date: "Jun 2024 - Jul 2024",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
-        desc: "Gained hands-on experience in Artificial Intelligence and Machine Learning, developing practical solutions for real-world problems.",
+        role: "Founding Engineer",
+        company: "Georim",
+        date: "Jun 2025 - Present",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+        desc: "Built end-to-end cloud systems for video delivery, reliability, and security at scale.",
         details: [
-            "Built and deployed an AI chatbot using IBM Watson Assistant, reducing manual query workload by ~40%.",
-            "Developed a Diabetes Prediction ML model achieving 75% accuracy using supervised learning on healthcare datasets.",
-            "Deployed cloud-hosted components improving accessibility and model uptime."
+            "Built a CloudFront-based video processing pipeline with GitHub Actions to ECR and CloudWatch autoscaling, reducing latency to under 40ms.",
+            "Optimized Prisma migrations and indexing to cut average API response time from 480ms to 50ms.",
+            "Migrated core services to AWS to support 10x peak load and improved production security through review of 50+ pull requests."
+        ]
+    },
+    {
+        role: "Open Source Contributor",
+        company: "Meta",
+        date: "Dec 2025 - Present",
+        logo: "https://cdn.simpleicons.org/meta/0866FF",
+        desc: "Contributed to Detectron2 by improving reliability, dependency hygiene, and observability.",
+        details: [
+            "Submitted 10+ pull requests with 2 merged into Detectron2 core modules.",
+            "Filed 21 dependency-related issues spanning security, deprecated APIs, and CI/CD improvements.",
+            "Implemented logging across 6 modules to improve debugging and error traceability."
+        ]
+    },
+    {
+        role: "Research Assistant",
+        company: "Grambling State University",
+        date: "Feb 2025 - Feb 2026",
+        logo: "/AppIcons/gsu-seal.svg",
+        desc: "Built distributed research infrastructure for cybersecurity machine learning workloads.",
+        details: [
+            "Engineered Proxmox + Docker + Kubernetes infrastructure supporting distributed GPU workloads across 10+ nodes.",
+            "Fine-tuned a 500M parameter LLM using QLoRA on 100K+ security datasets with 6x RTX 4080 GPUs.",
+            "Reached 0.89 F1 score on security-focused model evaluation."
+        ]
+    },
+    {
+        role: "Machine Learning Researcher",
+        company: "National Science Foundation",
+        date: "Aug 2025 – Oct 2025",
+        logo: "/AppIcons/nsf-logo.svg",
+        desc: "Built an ML pipeline for Business Email Compromise detection with psycholinguistic features.",
+        details: [
+            "Built a gradient-boosting BEC detection pipeline combining ML models with psycholinguistic indicators, improving detection accuracy by 8.8%.",
+            "Authored comparative research paper evaluating XGBoost, LightGBM, CatBoost, Random Forest, and stacking ensembles for BEC detection, identifying key linguistic signals."
+        ]
+    },
+    {
+        role: "Product Manager",
+        company: "Alliance4AI",
+        date: "Dec 2024 – Apr 2025",
+        logo: "/AppIcons/alliance4ai-logo.svg",
+        desc: "Led product development for website redesign across a cross-functional team.",
+        details: [
+            "Led product development for website redesign across a 6-person cross-functional team over 9 weeks.",
+            "Conducted competitive analysis of 10+ educational apps to guide feature improvements and user engagement strategy."
+        ]
+    },
+    {
+        role: "Software Engineering Intern",
+        company: "Ideation Axis",
+        date: "Jan 2024 – Jul 2024",
+        logo: "/AppIcons/ideation-axis-logo.svg",
+        desc: "Built MERN stack web apps and deployed microservices on AWS for clients at scale.",
+        details: [
+            "Built MERN stack web apps for 20+ clients, integrating Stripe API for $1.2M+ in transactions.",
+            "Deployed 5 microservices on AWS EKS using RabbitMQ, Docker, Kubernetes, and JWT gateway, achieving 99.9% uptime and fully decoupled architecture."
         ]
     }
 ];
 
-const EXPERIMENTS_DATA = [
+const ACTIVITIES_DATA = [
     {
-        title: "Kanban Board",
-        desc: "Advanced drag-and-drop mechanics with physics-based reordering and real-time state synchronization.",
-        tech: "Framer Motion / DnD Kit",
-        link: "#",
-        internalView: "kanban",
-        iconUrl: "https://i.pinimg.com/736x/68/58/a8/6858a8254d5de88cd6bdc168a9f0b393.jpg"
+        title: "Vice President",
+        org: "Association for Computing Machinery (Grambling Chapter)",
+        logo: "https://cdn.simpleicons.org/acm/0085CA",
+        bullets: ["Led workshops, hackathons, and collaboration events to improve technical skills among members."]
+    },
+    {
+        title: "Uber Career Prep Fellow",
+        org: "Uber",
+        logo: "https://cdn.simpleicons.org/uber/09D3AC",
+        bullets: ["Selected for highly competitive SWE fellowship (top 1% of applicants) with mentorship, technical interview prep, and software engineering career development."]
+    },
+    {
+        title: "HackMIT",
+        org: "MIT",
+        logo: "/AppIcons/mit-logo.svg",
+        bullets: ["Built a prompt injection and data poisoning defense layer for RAG pipelines using entropy-based anomaly detection, embedding scoring, and uncertainty-gated retrieval filtering to block malicious context before LLM inference."]
+    },
+    {
+        title: "Golden Pitch",
+        org: "Grambling State University",
+        logo: "/AppIcons/gsu-seal.svg",
+        bullets: ["Pitched \"Goalie,\" an AI-powered subscription tracking app at Grambling's entrepreneurship competition."]
+    },
+    {
+        title: "Bain & Company Kickstart Fellow",
+        org: "Bain & Company",
+        logo: "/AppIcons/bain-logo.svg",
+        bullets: ["Selected for 2025 program focused on consulting exposure and case interview preparation."]
+    },
+    {
+        title: "Goldman Sachs Virtual Insight Series",
+        org: "Goldman Sachs",
+        logo: "https://cdn.simpleicons.org/goldmansachs/1D62D7",
+        bullets: ["Participated in sessions on financial services, markets, and early-career development."]
+    },
+    {
+        title: "Notion Hackathon",
+        org: "Grambling State University",
+        logo: "/AppIcons/gsu-seal.svg",
+        bullets: ["Built a Notion-based interactive dashboard for software engineers to track project milestones."]
+    },
+    {
+        title: "Emerging Leaders for College Students Program",
+        org: "Microsoft",
+        logo: "/AppIcons/microsoft-logo.svg",
+        bullets: ["Selected for Microsoft's Emerging Leaders program focused on technical and professional development."]
+    },
+    {
+        title: "NVIDIA Summer Bridge Series",
+        org: "NVIDIA",
+        logo: "https://cdn.simpleicons.org/nvidia/76B900",
+        bullets: ["Participated in NVIDIA's Summer Bridge Series covering GPU computing, AI infrastructure, and career development."]
+    },
+    {
+        title: "REACH Participant",
+        org: "Oracle",
+        logo: "/AppIcons/oracle-logo.svg",
+        bullets: ["Selected for Oracle's REACH program for underrepresented students in technology."]
+    },
+    {
+        title: "Elevate to Innovate Externship",
+        org: "Accenture",
+        logo: "https://cdn.simpleicons.org/accenture/A100FF",
+        bullets: ["Completed Accenture's Elevate to Innovate externship program focused on technology consulting and innovation."]
     }
 ];
 
@@ -194,17 +307,8 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                                 className="flex flex-col h-full"
                             >
                                 <div>
-                                    <div className="mb-4">
-                                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/5 border border-emerald-500/10 backdrop-blur-sm transition-all hover:bg-emerald-500/10">
-                                            <div className="relative flex items-center justify-center">
-                                                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse relative z-10" />
-                                                <div className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-20 duration-1000" />
-                                            </div>
-                                            <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 tracking-wide">Available for new projects</span>
-                                        </div>
-                                    </div>
                                     <h1 ref={triggerRef} className="text-3xl md:text-4xl font-serif font-medium text-gray-900 dark:text-white mb-2 leading-tight text-balance flex flex-wrap items-center gap-2">
-                                        Hi, I'm Syed Subhan
+                                        Hi, I'm Baning Philip Amponsah
                                         <img src="/Twitter_Verified_Badge.svg.png" alt="Verified" className="w-[22px] h-[22px] md:w-[26px] md:h-[26px] mt-1.5 object-contain" />
                                     </h1>
 
@@ -212,12 +316,12 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                                     <div className="mb-2 h-10 md:h-12 flex items-center">
                                         <NativeTypewriter
                                             content={[
+                                                "Founding Engineer",
+                                                "Machine Learning Researcher",
+                                                "Open Source Contributor",
+                                                "Cybersecurity Student",
                                                 "Full Stack Developer",
-                                                "Data Scientist",
-                                                "UI/UX Designer",
-                                                "Creative Developer",
-                                                "Problem Solver",
-                                                "Entrepreneur"
+                                                "Product Builder"
                                             ]}
                                             speed="medium"
                                             loop={true}
@@ -227,12 +331,36 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
 
                                     <div className="prose dark:prose-invert prose-gray max-w-lg mb-6">
                                         <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base text-pretty">
-                                            Building polished digital experiences <LocationIndicator />. Currently a developer combining engineering rigor with creative design.
+                                            I’m a sophomore at Grambling State University studying Computer Science and Cybersecurity <LocationIndicator />. I build at the intersection of machine learning, cybersecurity, and systems engineering, with experience ranging from fine-tuning large language models to shipping production infrastructure. I’ve published two research papers, competed at HackMIT, and currently serve as a Founding Engineer, Open Source Contributor at Meta, and Research Assistant at Grambling State.
                                         </p>
                                     </div>
                                 </div>
 
-
+                                {/* --- Affiliations Snippet --- */}
+                                <div className="mt-4">
+                                    <p className="text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500 font-mono mb-3">Programs &amp; Fellowships</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {[
+                                            { name: "Microsoft", logo: "/AppIcons/microsoft-logo.svg" },
+                                            { name: "NVIDIA", logo: "https://cdn.simpleicons.org/nvidia/76B900" },
+                                            { name: "Oracle", logo: "/AppIcons/oracle-logo.svg" },
+                                            { name: "Accenture", logo: "https://cdn.simpleicons.org/accenture/A100FF" },
+                                            { name: "Uber", logo: "https://cdn.simpleicons.org/uber/09D3AC" },
+                                            { name: "Goldman Sachs", logo: "https://cdn.simpleicons.org/goldmansachs/1D62D7" },
+                                            { name: "Bain & Co.", logo: "/AppIcons/bain-logo.svg" },
+                                            
+                                        ].map((item) => (
+                                            <div key={item.name} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-xs text-gray-600 dark:text-gray-300">
+                                                {item.logo ? (
+                                                    <img src={item.logo} alt={item.name} className="w-3.5 h-3.5 object-contain" />
+                                                ) : (
+                                                    <span className="w-3.5 h-3.5 rounded-full bg-gray-200 dark:bg-white/20 flex items-center justify-center text-[8px] font-bold text-gray-500 dark:text-gray-300">{item.name[0]}</span>
+                                                )}
+                                                {item.name}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             </motion.div>
                         </div>
                     </div>
@@ -243,7 +371,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                 {/* --- WORK EXPERIENCE --- */}
                 <section id="work" className="mb-16 scroll-mt-32">
                     <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                        Career Path
+                        Work Experience
                         <div className="h-[1px] flex-1 bg-gray-200 dark:bg-white/10" />
                     </h2>
                     <div className="flex flex-col">
@@ -251,10 +379,75 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                     </div>
                 </section>
 
-                {/* --- PHILOSOPHY REVEAL --- */}
-                {/* --- PHILOSOPHY REVEAL --- */}
-                {/* Moved to bottom */}
+                {/* --- EDUCATION --- */}
+                <section id="education" className="mb-16 scroll-mt-32">
+                    <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                        Education
+                        <div className="h-[1px] flex-1 bg-gray-200 dark:bg-white/10" />
+                    </h2>
+                    <motion.div
+                        className="flex gap-4 p-5 rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/[0.03]"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4 }}
+                    >
+                        <div className="shrink-0 w-12 h-12 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 flex items-center justify-center overflow-hidden">
+                            <img src="/AppIcons/gsu-seal.svg" alt="Grambling State University" className="w-full h-full object-contain p-1.5 opacity-90" />
+                        </div>
+                        <div className="flex-1">
+                            <div className="flex flex-wrap items-start justify-between gap-2">
+                                <div>
+                                    <h3 className="text-base font-bold text-gray-900 dark:text-white leading-tight">Grambling State University</h3>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Grambling, LA</p>
+                                </div>
+                            </div>
+                            <p className="text-sm text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
+                                Bachelor of Science in Computer Science &amp; Cybersecurity
+                            </p>
+                        </div>
+                    </motion.div>
+                </section>
 
+                {/* --- ACTIVITIES --- */}
+                <section id="activities" className="mb-16 scroll-mt-32">
+                    <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                        Activities
+                        <div className="h-[1px] flex-1 bg-gray-200 dark:bg-white/10" />
+                    </h2>
+                    <div className="flex flex-col gap-4">
+                        {ACTIVITIES_DATA.map((item, i) => (
+                            <motion.div
+                                key={i}
+                                className="group flex gap-4 p-4 rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/[0.03] hover:border-blue-200 dark:hover:border-blue-500/30 transition-all duration-300"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: i * 0.08 }}
+                            >
+                                <div className="shrink-0 w-10 h-10 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 flex items-center justify-center overflow-hidden">
+                                    {item.logo ? (
+                                        <img src={item.logo} alt={item.org} className="w-full h-full object-contain p-1.5 opacity-90" />
+                                    ) : (
+                                        <span className="text-sm font-bold text-gray-400 dark:text-gray-500">{item.org.charAt(0)}</span>
+                                    )}
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-base font-bold text-gray-900 dark:text-white leading-tight">{item.title}</h3>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{item.org}</p>
+                                    <ul className="space-y-1">
+                                        {item.bullets.map((b, j) => (
+                                            <li key={j} className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed flex gap-2">
+                                                <span className="text-gray-400 mt-0.5 shrink-0">•</span>
+                                                <span>{b}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
 
                 {/* --- SKILLS --- */}
                 <section id="skills" className="mb-4 scroll-mt-32">
@@ -277,62 +470,6 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                     </div>
                 </section>
 
-                {/* --- ARTICLES --- */}
-                <section id="articles" className="mb-16 scroll-mt-32">
-                    <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                        Articles
-                        <div className="h-[1px] flex-1 bg-gray-200 dark:bg-white/10" />
-                    </h2>
-                    <div className="space-y-6">
-                        {/* Wrapped in PreviewLinkCard for hover effect */}
-                        <div className='flex flex-col gap-4'>
-                            <PreviewLinkCard
-                                href="/blogs"
-                                title="The Future of Interface Design"
-                                subtitle="Exploring spatial computing and glassmorphism"
-                                date="Aug 12, 2024"
-                                readTime="4 min read"
-                                description="Deep dive into the next generation of user interfaces, focusing on spatial computing paradigms and the evolution of glassmorphism in modern web apps."
-                                className="block w-full"
-                                previewImage="https://i.pinimg.com/originals/62/6e/db/626edb1f706ad87f7ec2716e32132f68.gif"
-                            >
-                                <ArticleItem
-                                    title="The Future of Interface Design"
-                                    date="Aug 12, 2024"
-                                    readTime="4 min read"
-                                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); triggerHaptic(10); onNavigate('blogs', 'interface-design'); }}
-                                />
-                            </PreviewLinkCard>
-
-                            <PreviewLinkCard
-                                href="/blogs"
-                                title="Scaling Distributed Systems"
-                                subtitle="Lessons learned from high-traffic architecture"
-                                date="Sep 05, 2024"
-                                readTime="7 min read"
-                                description="Practical strategies for scaling node.js microservices under high load, managing database consistency, and implementing effective caching layers."
-                                className="block w-full"
-                                previewImage="https://i.pinimg.com/originals/aa/dc/d3/aadcd3904af2dcaeb268101456bf2216.gif"
-                            >
-                                <ArticleItem
-                                    title="Scaling Distributed Systems"
-                                    date="Sep 05, 2024"
-                                    readTime="7 min read"
-                                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); triggerHaptic(10); onNavigate('blogs', 'distributed-systems'); }}
-                                />
-                            </PreviewLinkCard>
-                        </div>
-                    </div>
-                    <div className="mt-8 flex justify-center">
-                        <NativeMagnetic>
-                            <button onClick={() => handleNavWithHaptic('blogs')} className="group flex items-center gap-2 px-6 py-2 rounded-full border border-gray-200 dark:border-white/10 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors active:scale-95">
-                                See more articles
-                                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                            </button>
-                        </NativeMagnetic>
-                    </div>
-                </section>
-
                 {/* --- PROJECTS --- */}
                 <section id="projects" className="mb-16 scroll-mt-32">
                     <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-8 flex items-center gap-3">
@@ -344,49 +481,48 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <ProjectCard
                             index={0}
-                            title="Shinrai"
-                            description="Cloud-Native CI/CD Platform with advanced pipeline visualization and automated deployment strategies."
-                            tags={["AWS", "Docker", "Go"]}
+                            title="RAG Pipeline"
+                            description="Built a retrieval-augmented generation pipeline with document parsing, vector storage, and semantic retrieval, improving LLM answer accuracy by 35%."
+                            tags={["LangChain", "FAISS", "OpenAI API"]}
                             imageUrl="https://i.pinimg.com/originals/99/ca/28/99ca287813fd0e1f689489fa9550dbcd.gif"
-                            githubUrl="https://github.com/syedsubhan/shinrai"
-                            stars={128}
+                            githubUrl="https://github.com/Alanperry1/RAG-Pipeline"
+                            stars={35}
                             isDimmed={hoveredProject !== null && hoveredProject !== 0}
                             onHover={() => setHoveredProject(0)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={1}
-                            title="Aizen Verse"
-                            description="Anime Streaming Experience featuring real-time social watching, localized subtitles, and adaptive streaming."
-                            tags={["React", "Vite", "HLS.js"]}
-                            link="https://aizen-verse.vercel.app/"
+                            title="Distributed Key-Value Store"
+                            description="Implemented quorum replication, consistent hashing, gossip protocol, and a custom storage engine for a fault-tolerant distributed store."
+                            tags={["Rust", "Tokio", "gRPC"]}
                             videoUrl="/videos/aizen-verse.mp4"
-                            githubUrl="https://github.com/syedsubhan/aizen"
-                            stars={342}
+                            githubUrl="https://github.com/Alanperry1/rkv"
+                            stars={48}
                             isDimmed={hoveredProject !== null && hoveredProject !== 1}
                             onHover={() => setHoveredProject(1)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={2}
-                            title="Nexus UI"
-                            description="Enterprise Component Library System built for scale, accessibility, and developer experience."
-                            tags={["TypeScript", "Storybook"]}
+                            title="FeedFlow"
+                            description="Developed a serverless feedback analytics pipeline with AI sentiment analysis, multi-factor priority scoring, and similarity clustering."
+                            tags={["Cloudflare Workers", "D1", "TypeScript"]}
                             imageUrl="https://i.pinimg.com/originals/0a/d7/35/0ad735f722522d9a424b2a018ff63319.gif"
-                            githubUrl="https://github.com/syedsubhan/nexus"
-                            stars={89}
+                            githubUrl="https://github.com/Alanperry1/feedflow"
+                            stars={95}
                             isDimmed={hoveredProject !== null && hoveredProject !== 2}
                             onHover={() => setHoveredProject(2)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={3}
-                            title="Vortex Engine"
-                            description="High-performance Physics Engine running in the browser via WebAssembly for next-gen web games."
-                            tags={["C++", "WASM", "WebGL"]}
+                            title="Forex Trading Bot"
+                            description="Built a trading system analyzing 1.5GB of forex data to identify 1.5K+ profitable setups and achieve 26% ROI."
+                            tags={["NumPy", "Pandas", "Chart.js"]}
                             imageUrl="https://i.pinimg.com/originals/a7/7f/bf/a77fbfec380b3f63e3feb9a7df60616a.gif"
-                            githubUrl="https://github.com/syedsubhan/vortex"
-                            stars={1024}
+                            githubUrl="https://github.com/Alanperry1/Forex-Trading-Bot"
+                            stars={26}
                             isDimmed={hoveredProject !== null && hoveredProject !== 3}
                             onHover={() => setHoveredProject(3)}
                             onLeave={() => setHoveredProject(null)}
@@ -414,83 +550,6 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                     <ScrollFillText />
                 </div>
 
-                {/* --- EXPERIMENTS --- */}
-                <section id="experiments" className="mb-16 scroll-mt-32">
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-2 flex items-center gap-3">
-                            Experiments
-                            <div className="h-[1px] flex-1 bg-gray-200 dark:bg-white/10" />
-                        </h2>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 font-mono tracking-wide leading-relaxed max-w-2xl">
-                            Recreating and enhancing top-tier components. Reverse-engineered with respect to original creators.
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {EXPERIMENTS_DATA.map((exp, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="group relative p-6 rounded-2xl bg-gray-50/50 dark:bg-white/5 border border-gray-100/50 dark:border-white/5 hover:border-blue-500/30 dark:hover:border-blue-400/30 transition-all duration-500 active:scale-[0.98] overflow-hidden cursor-pointer"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation(); // Stop propagation to be safe
-                                    triggerHaptic(10);
-                                    if (exp.internalView) {
-                                        onNavigate(exp.internalView);
-                                    } else {
-                                        window.open(exp.link, '_blank');
-                                    }
-                                }}
-                            >
-                                {/* Interactive Glow */}
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.08)_0%,transparent_70%)] pointer-events-none" />
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl bg-blue-500/5 -z-10" />
-
-                                <div className="relative flex flex-col h-full z-10">
-                                    <div className="mb-4 flex justify-between items-start">
-                                        <div className="p-2 rounded-lg text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                                            {exp.iconUrl ? (
-                                                <img src={exp.iconUrl} alt="icon" className="w-[40px] h-[40px] object-cover rounded-lg" />
-                                            ) : (
-                                                <Beaker size={18} />
-                                            )}
-                                        </div>
-                                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-400 group-hover:text-blue-500 transition-colors">
-                                            {exp.tech}
-                                        </span>
-                                    </div>
-                                    <h3 className="text-lg font-serif font-medium text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                        {exp.title}
-                                    </h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-3">
-                                        {exp.desc}
-                                    </p>
-                                    <div className="mt-auto pt-4 flex items-center gap-1.5 text-xs font-medium text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        {exp.internalView ? "Try it now" : "View Source"} <ArrowUpRight size={12} />
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    <div className="mt-12 flex justify-center">
-                        <span className="animate-shimmer bg-[linear-gradient(110deg,#939393,45%,#1e1e1e,55%,#939393)] dark:bg-[linear-gradient(110deg,#939393,45%,#e5e5e5,55%,#939393)] bg-[length:200%_100%] bg-clip-text text-transparent text-2xl font-semibold">
-                            Secret Research Ongoing
-                        </span>
-                    </div>
-                </section>
-
-
-
-                {/* --- PAGE VISITS (Above Contact) --- */}
-                <div className="mb-8">
-                    <PageVisitsFooter />
-                </div>
-
                 {/* --- CONTACT --- */}
                 <section id="contact" className="mb-0 scroll-mt-32 pb-0">
                     <div className="flex flex-col items-center text-center">
@@ -504,12 +563,12 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
 
                         {/* Heading */}
                         <h2 className="text-4xl md:text-5xl font-serif text-gray-900 dark:text-white mb-6">
-                            Let's build something extraordinary
+                            Let's build secure and intelligent systems
                         </h2>
 
                         {/* Single Line Handwritten Text */}
                         <p className="font-handwriting text-2xl md:text-3xl text-gray-600 dark:text-gray-300 mb-12  origin-center">
-                            DM me on X or Drop a Mail
+                            Reach out via LinkedIn, GitHub, or email
                         </p>
 
                         {/* Social Dock */}
@@ -528,16 +587,6 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
 
                             {/* Split Layout */}
                             <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full border-t border-gray-100 dark:border-white/5 pt-6">
-                                <p className="text-sm font-medium text-gray-600 dark:text-gray-400 flex items-center gap-1.5 opacity-90 order-2 md:order-1">
-                                    Built with love by
-                                    <span
-                                        className="relative font-semibold text-gray-900 dark:text-white group cursor-pointer inline-block"
-                                        onClick={() => triggerHaptic(10)}
-                                    >
-                                        Syed Subhan
-                                    </span>
-                                    <span className="hover:animate-pulse transition-transform cursor-default">🫶</span>
-                                </p>
                                 <div className="text-sm font-medium text-gray-600 dark:text-gray-400 tracking-wide order-1 md:order-2">
                                     © {new Date().getFullYear()}. Engineered with Soul.
                                 </div>
@@ -553,10 +602,8 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
 
 // --- Sub Components ---
 
-const XIcon = ({ className }: { className?: string }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className={className}>
-        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.294 19.497h2.039L6.486 3.24H4.298l13.309 17.41z" />
-    </svg>
+const ResearchGateIcon = ({ className }: { className?: string }) => (
+    <img src="/AppIcons/researchgate.svg" alt="ResearchGate" className={className} />
 );
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -576,16 +623,16 @@ const SocialDock = () => {
     const [copied, setCopied] = useState(false);
 
     const socialLinks = [
-        { icon: XIcon, label: "Twitter", href: "https://x.com/intent/user?screen_name=SubhanHQ" },
-        { icon: LinkedInIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/subhan-uddin/" },
-        { icon: GmailIcon, label: "Email", href: "mailto:syednotion@gmail.com" },
-        { icon: Github, label: "GitHub", href: "https://github.com/Subhan-code" }
+        { icon: ResearchGateIcon, label: "Research", href: "https://www.researchgate.net/profile/Philip-Baning" },
+        { icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/in/pbaning" },
+        { icon: GmailIcon, label: "Email", href: "mailto:baningphilip1@gmail.com" },
+        { icon: Github, label: "GitHub", href: "https://github.com/Alanperry1" }
     ];
 
     const handleCopy = (e: React.MouseEvent) => {
         e.stopPropagation();
         e.preventDefault();
-        navigator.clipboard.writeText('syednotion@gmail.com');
+        navigator.clipboard.writeText('baningphilip1@gmail.com');
         setCopied(true);
         triggerHaptic(15);
         setTimeout(() => setCopied(false), 2000);
@@ -627,7 +674,7 @@ const SocialDock = () => {
                                 >
                                     {link.label === 'Email' ? (
                                         <div className="flex items-center gap-2 group/tooltip">
-                                            <span>syednotion@gmail.com</span>
+                                            <span>baningphilip1@gmail.com</span>
                                             <div className="p-1 rounded-md bg-white/10 dark:bg-black/10 hover:bg-white/20 dark:hover:bg-black/20 transition-colors">
                                                 {copied ? (
                                                     <Check className="w-3 h-3 text-green-400 dark:text-green-600" />
@@ -662,24 +709,3 @@ const SocialDock = () => {
     );
 };
 
-
-
-const ArticleItem = ({ title, date, readTime, onClick }: { title: string, date: string, readTime: string, onClick: (e: React.MouseEvent) => void }) => (
-    <button onClick={onClick} className="w-full text-left group flex items-center justify-between py-4 border-b border-gray-100 dark:border-white/5 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 px-4 rounded-lg transition-colors -mx-4 active:bg-gray-100 dark:active:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/50">
-        <div>
-            <h3 className="text-base font-medium text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{title}</h3>
-            <span className="text-xs text-gray-500 mt-1 inline-block">{date}</span>
-        </div>
-
-        {/* Animated Arrow + Read Time */}
-        <div className="flex items-center gap-2">
-            <span className="text-xs font-mono text-gray-400">{readTime}</span>
-            <div className="w-4 h-4 overflow-hidden relative flex items-center justify-center">
-                <ArrowRight
-                    size={16}
-                    className="absolute text-blue-500 transform transition-all duration-300 opacity-0 -translate-x-full group-hover:translate-x-0 group-hover:opacity-100"
-                />
-            </div>
-        </div>
-    </button>
-);

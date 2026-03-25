@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { DynamicNavigation } from './DynamicNavigation';
 import { ArrowRight } from 'lucide-react';
-import { PageVisitsFooter } from './PageVisitsFooter';
 
 interface BlogListPageProps {
     onNavigate: (view: string, id?: string) => void;
@@ -69,7 +68,7 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onNavigate, toggleTh
                         transition={{ duration: 0.6 }}
                         className="text-5xl md:text-7xl font-serif text-gray-900 dark:text-white mb-6"
                     >
-                        Writing
+                        Research & Publications
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -77,7 +76,7 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onNavigate, toggleTh
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-xl text-gray-500 dark:text-gray-400 font-light"
                     >
-                        Thoughts on software engineering, design, and user experience.
+                        Published work on machine learning, cybersecurity, and distributed systems.
                     </motion.p>
                 </div>
 
@@ -110,7 +109,6 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onNavigate, toggleTh
                     ))}
                 </div>
 
-                <PageVisitsFooter />
 
             </main>
         </>

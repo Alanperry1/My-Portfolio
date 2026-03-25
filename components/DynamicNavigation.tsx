@@ -23,7 +23,6 @@ interface DynamicNavigationProps {
 const NAV_ITEMS = [
     { name: 'HOME', view: 'home' },
     { name: 'PROJECTS', view: 'projects' },
-    { name: 'BLOGS', view: 'blogs' },
     { name: 'CONTACT', view: 'contact' },
 ];
 

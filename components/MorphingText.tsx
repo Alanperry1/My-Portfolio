@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { cn } from '../lib/utils';
 
 const texts = [
+    "Founding Engineer",
+    "Open Source Contributor",
+    "Machine Learning Researcher",
+    "Cybersecurity Student",
     "Full Stack Developer",
-    "Data Scientist",
-    "UI/UX Designer",
-    "Creative Developer",
-    "Problem Solver",
-    "Entrepreneur"
+    "Product Builder"
 ];
 
 // Controls the speed of morphing.
