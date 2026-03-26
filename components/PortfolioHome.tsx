@@ -36,6 +36,7 @@ const SECTIONS = [
     { id: 'about', title: 'About' },
     { id: 'work', title: 'Work Experience' },
     { id: 'education', title: 'Education' },
+    { id: 'certifications', title: 'Certifications' },
     { id: 'activities', title: 'Activities' },
     { id: 'skills', title: 'Tech Stack' },
     { id: 'articles', title: 'Research & Publications' },
@@ -189,6 +190,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
     const [activeSection, setActiveSection] = useState<string | null>('about');
     const [hoveredProject, setHoveredProject] = useState<number | null>(null);
     const [expandedPaper, setExpandedPaper] = useState<number | null>(null);
+    const [expandedActivity, setExpandedActivity] = useState<number | null>(null);
 
     // Scroll Spy Logic
     useEffect(() => {
@@ -332,7 +334,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
 
                                     <div className="prose dark:prose-invert prose-gray max-w-lg mb-6">
                                         <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base text-pretty">
-                                            I’m a sophomore at Grambling State University studying Computer Science and Cybersecurity <LocationIndicator />. I build at the intersection of machine learning, cybersecurity, and systems engineering, with experience ranging from fine-tuning large language models to shipping production infrastructure. I’ve published two research papers, competed at HackMIT, and currently serve as a Founding Engineer, Open Source Contributor at Meta, and Research Assistant at Grambling State.
+                                            I'm a Junior at Grambling State University studying Computer Science and Cybersecurity <LocationIndicator />. I build at the intersection of machine learning, cybersecurity, and systems engineering, with experience ranging from fine-tuning large language models to shipping production infrastructure. I've published two research papers, competed at HackMIT, and currently serve as a Founding Engineer, Open Source Contributor at Meta, and Research Assistant at Grambling State.
                                         </p>
                                     </div>
                                 </div>
@@ -410,41 +412,101 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                     </motion.div>
                 </section>
 
+                {/* --- CERTIFICATIONS --- */}
+                <section id="certifications" className="mb-16 scroll-mt-32">
+                    <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                        Certifications
+                        <div className="h-[1px] flex-1 bg-gray-200 dark:bg-white/10" />
+                    </h2>
+                    <div className="flex flex-wrap gap-3">
+                        {[
+                            { name: 'CompTIA Security+', abbr: 'SEC+', color: 'red', done: true },
+                            { name: 'Microsoft Azure Fundamentals', abbr: 'AZ-900', color: 'blue', done: true },
+                            { name: 'ISO/IEC 27001', abbr: 'ISO 27001', color: 'gray', done: true },
+                            { name: 'AWS Cloud Practitioner', abbr: 'AWS CLF-02', color: 'orange', done: true },
+                            { name: 'AWS Solutions Architect Associate', abbr: 'AWS SAA-C03', color: 'orange', done: false },
+                        ].map((cert, i) => (
+                            <motion.div
+                                key={i}
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/[0.03]"
+                                initial={{ opacity: 0, y: 16 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.35, delay: i * 0.07 }}
+                            >
+                                <div className={`w-2 h-2 rounded-full shrink-0 ${
+                                    cert.done
+                                        ? cert.color === 'red' ? 'bg-red-500'
+                                        : cert.color === 'blue' ? 'bg-blue-500'
+                                        : cert.color === 'orange' ? 'bg-orange-500'
+                                        : 'bg-gray-400'
+                                        : 'bg-amber-400 animate-pulse'
+                                }`} />
+                                <div>
+                                    <p className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">{cert.abbr}</p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400">{cert.name}</p>
+                                </div>
+                                {!cert.done && (
+                                    <span className="ml-auto text-[10px] font-medium text-amber-500 bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 rounded-full">In Progress</span>
+                                )}
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
                 {/* --- ACTIVITIES --- */}
                 <section id="activities" className="mb-16 scroll-mt-32">
                     <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-6 flex items-center gap-3">
                         Activities
                         <div className="h-[1px] flex-1 bg-gray-200 dark:bg-white/10" />
                     </h2>
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-3">
                         {ACTIVITIES_DATA.map((item, i) => (
                             <motion.div
                                 key={i}
-                                className="group flex gap-4 p-4 rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/[0.03] hover:border-blue-200 dark:hover:border-blue-500/30 transition-all duration-300"
+                                className="rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/[0.03] overflow-hidden cursor-pointer"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: i * 0.08 }}
+                                transition={{ duration: 0.4, delay: i * 0.06 }}
+                                onMouseEnter={() => setExpandedActivity(i)}
+                                onMouseLeave={() => setExpandedActivity(null)}
                             >
-                                <div className="shrink-0 w-10 h-10 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 flex items-center justify-center overflow-hidden">
-                                    {item.logo ? (
-                                        <img src={item.logo} alt={item.org} className="w-full h-full object-contain p-1.5 opacity-90" />
-                                    ) : (
-                                        <span className="text-sm font-bold text-gray-400 dark:text-gray-500">{item.org.charAt(0)}</span>
+                                <div className="flex gap-4 p-4 items-center">
+                                    <div className="shrink-0 w-10 h-10 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 flex items-center justify-center overflow-hidden">
+                                        {item.logo ? (
+                                            <img src={item.logo} alt={item.org} className="w-full h-full object-contain p-1.5 opacity-90" />
+                                        ) : (
+                                            <span className="text-sm font-bold text-gray-400 dark:text-gray-500">{item.org.charAt(0)}</span>
+                                        )}
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-base font-bold text-gray-900 dark:text-white leading-tight">{item.title}</h3>
+                                        <p className="text-xs text-gray-500 dark:text-gray-400">{item.org}</p>
+                                    </div>
+                                </div>
+                                <AnimatePresence>
+                                    {expandedActivity === i && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: 'auto', opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                            className="overflow-hidden"
+                                        >
+                                            <div className="px-4 pb-4 border-t border-gray-100 dark:border-white/10 pt-3">
+                                                <ul className="space-y-1.5">
+                                                    {item.bullets.map((b, j) => (
+                                                        <li key={j} className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed flex gap-2">
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 dark:bg-blue-500 mt-1.5 shrink-0" />
+                                                            <span>{b}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </motion.div>
                                     )}
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-base font-bold text-gray-900 dark:text-white leading-tight">{item.title}</h3>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{item.org}</p>
-                                    <ul className="space-y-1">
-                                        {item.bullets.map((b, j) => (
-                                            <li key={j} className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed flex gap-2">
-                                                <span className="text-gray-400 mt-0.5 shrink-0">•</span>
-                                                <span>{b}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                </AnimatePresence>
                             </motion.div>
                         ))}
                     </div>
@@ -570,19 +632,18 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                 {/* --- PROJECTS --- */}
                 <section id="projects" className="mb-16 scroll-mt-32">
                     <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-8 flex items-center gap-3">
-                        Selected Projects
+                        Projects
                         <div className="h-[1px] flex-1 bg-gray-200 dark:bg-white/10" />
                     </h2>
 
-                    {/* Grid of 4 Projects - Professional Apple Style */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <ProjectCard
                             index={0}
-                            title="RAG Pipeline"
-                            description="Built a retrieval-augmented generation pipeline with document parsing, vector storage, and semantic retrieval, improving LLM answer accuracy by 35%."
-                            tags={["LangChain", "FAISS", "OpenAI API"]}
-                            imageUrl="https://i.pinimg.com/originals/99/ca/28/99ca287813fd0e1f689489fa9550dbcd.gif"
-                            githubUrl="https://github.com/Alanperry1/RAG-Pipeline"
+                            title="SecureRAG"
+                            description="Prompt injection & data poisoning detection layer for RAG pipelines with entropy-based anomaly scoring, confidence gating, and FastAPI serving."
+                            tags={["Python", "FastAPI", "LangChain", "FAISS"]}
+                            imageUrl="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/SecureRAG"
                             stars={35}
                             isDimmed={hoveredProject !== null && hoveredProject !== 0}
                             onHover={() => setHoveredProject(0)}
@@ -591,9 +652,9 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                         <ProjectCard
                             index={1}
                             title="Distributed Key-Value Store"
-                            description="Implemented quorum replication, consistent hashing, gossip protocol, and a custom storage engine for a fault-tolerant distributed store."
-                            tags={["Rust", "Tokio", "gRPC"]}
-                            videoUrl="/videos/aizen-verse.mp4"
+                            description="Dynamo-inspired distributed KV store in Rust with consistent hashing, tunable quorum replication, vector-clock versioning, and SWIM gossip-based failure detection."
+                            tags={["Rust", "Tokio", "gRPC", "Protocol Buffers"]}
+                            imageUrl="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80"
                             githubUrl="https://github.com/Alanperry1/rkv"
                             stars={48}
                             isDimmed={hoveredProject !== null && hoveredProject !== 1}
@@ -603,9 +664,9 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                         <ProjectCard
                             index={2}
                             title="FeedFlow"
-                            description="Developed a serverless feedback analytics pipeline with AI sentiment analysis, multi-factor priority scoring, and similarity clustering."
+                            description="AI-powered customer feedback analytics built entirely on Cloudflare's Developer Platform with sentiment analysis and similarity clustering."
                             tags={["Cloudflare Workers", "D1", "TypeScript"]}
-                            imageUrl="https://i.pinimg.com/originals/0a/d7/35/0ad735f722522d9a424b2a018ff63319.gif"
+                            imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
                             githubUrl="https://github.com/Alanperry1/feedflow"
                             stars={95}
                             isDimmed={hoveredProject !== null && hoveredProject !== 2}
@@ -614,31 +675,64 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                         />
                         <ProjectCard
                             index={3}
-                            title="Forex Trading Bot"
-                            description="Built a trading system analyzing 1.5GB of forex data to identify 1.5K+ profitable setups and achieve 26% ROI."
-                            tags={["NumPy", "Pandas", "Chart.js"]}
-                            imageUrl="https://i.pinimg.com/originals/a7/7f/bf/a77fbfec380b3f63e3feb9a7df60616a.gif"
-                            githubUrl="https://github.com/Alanperry1/Forex-Trading-Bot"
-                            stars={26}
+                            title="ReqSim"
+                            description="Lightweight Python package for benchmarking and load testing APIs using async HTTP requests — instant performance insights without heavy tools."
+                            tags={["Python", "asyncio", "httpx", "MIT"]}
+                            imageUrl="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/ReqSim"
+                            stars={18}
                             isDimmed={hoveredProject !== null && hoveredProject !== 3}
                             onHover={() => setHoveredProject(3)}
                             onLeave={() => setHoveredProject(null)}
                         />
-                    </div>
-
-                    <div className="mt-12 flex justify-center">
-                        <p className="text-sm font-mono font-medium animate-shimmer bg-[linear-gradient(110deg,#939393,45%,#1e1e1e,55%,#939393)] dark:bg-[linear-gradient(110deg,#939393,45%,#e5e5e5,55%,#939393)] bg-[length:200%_100%] bg-clip-text text-transparent">
-                            Cooking more...
-                        </p>
-                    </div>
-
-                    <div className="mt-4 flex justify-center">
-                        <NativeMagnetic>
-                            <button onClick={() => handleNavWithHaptic('projects')} className="group flex items-center gap-2 px-6 py-2 rounded-full border border-gray-200 dark:border-white/10 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors active:scale-95">
-                                View all projects
-                                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                            </button>
-                        </NativeMagnetic>
+                        <ProjectCard
+                            index={4}
+                            title="AstroML Gamma Classifier"
+                            description="Classifies cosmic particle events from the MAGIC Gamma Telescope into gamma rays or hadrons using KNN, Naïve Bayes, Logistic Regression, and SVM."
+                            tags={["Python", "scikit-learn", "Jupyter"]}
+                            imageUrl="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/AstroML-Gamma-vs-Hadron-Classifier"
+                            stars={12}
+                            isDimmed={hoveredProject !== null && hoveredProject !== 4}
+                            onHover={() => setHoveredProject(4)}
+                            onLeave={() => setHoveredProject(null)}
+                        />
+                        <ProjectCard
+                            index={5}
+                            title="RAG Pipeline"
+                            description="Retrieval-augmented generation pipeline with document parsing, vector database management, and semantic retrieval to generate context-aware LLM responses."
+                            tags={["LangChain", "FAISS", "OpenAI API", "Python"]}
+                            imageUrl="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/RAG-Pipeline"
+                            stars={22}
+                            isDimmed={hoveredProject !== null && hoveredProject !== 5}
+                            onHover={() => setHoveredProject(5)}
+                            onLeave={() => setHoveredProject(null)}
+                        />
+                        <ProjectCard
+                            index={6}
+                            title="Stochastic Portfolio Valuation"
+                            description="Financial modeling tool using stochastic simulations to estimate portfolio value trajectories, visualize uncertainty, and analyze risk over time."
+                            tags={["Python", "NumPy", "Matplotlib", "Monte Carlo"]}
+                            imageUrl="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/Stochastic-Portfolio-Valuation-Model"
+                            stars={14}
+                            isDimmed={hoveredProject !== null && hoveredProject !== 6}
+                            onHover={() => setHoveredProject(6)}
+                            onLeave={() => setHoveredProject(null)}
+                        />
+                        <ProjectCard
+                            index={7}
+                            title="Forex Trading Bot"
+                            description="Trading system that analyzed 1.5GB of forex data to identify 1.5K+ profitable setups and achieve 26% ROI using pattern recognition and backtesting."
+                            tags={["Python", "NumPy", "Pandas", "Chart.js"]}
+                            imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/forex-bot"
+                            stars={26}
+                            isDimmed={hoveredProject !== null && hoveredProject !== 7}
+                            onHover={() => setHoveredProject(7)}
+                            onLeave={() => setHoveredProject(null)}
+                        />
                     </div>
                 </section>
 

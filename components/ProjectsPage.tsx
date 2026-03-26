@@ -12,34 +12,60 @@ interface ProjectsPageProps {
 
 const PROJECTS = [
     {
-        title: "RAG Pipeline",
-        desc: "Built a retrieval-augmented generation pipeline integrating document parsing, vector database management, and semantic retrieval to generate context-aware responses, improving LLM answer accuracy by 35%.",
-        tags: ["LangChain", "FAISS", "OpenAI API", "Python"],
-        image: "https://picsum.photos/seed/shinrai/600/400"
+        title: "SecureRAG",
+        desc: "Prompt injection & data poisoning detection layer for RAG pipelines with entropy-based anomaly scoring, embedding confidence gating, and FastAPI serving to block malicious context before LLM inference.",
+        tags: ["Python", "FastAPI", "LangChain", "FAISS"],
+        image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80",
+        github: "https://github.com/Alanperry1/SecureRAG"
     },
     {
         title: "Distributed Key-Value Store",
-        desc: "Built a production-grade distributed key-value store with quorum replication, consistent hashing, gossip protocol, and custom storage engine for fault tolerance and crash recovery.",
+        desc: "Dynamo-inspired distributed KV store in Rust with consistent hashing, tunable quorum replication, vector-clock versioning, and SWIM gossip-based failure detection.",
         tags: ["Rust", "Tokio", "gRPC", "Protocol Buffers"],
-        image: "https://picsum.photos/seed/aizen/600/400"
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+        github: "https://github.com/Alanperry1/rkv"
     },
     {
         title: "FeedFlow",
-        desc: "Built a serverless feedback analytics pipeline with AI sentiment analysis, multi-factor priority scoring, and similarity clustering, achieving 95% classification accuracy.",
+        desc: "AI-powered customer feedback analytics built entirely on Cloudflare's Developer Platform with sentiment analysis, multi-factor priority scoring, and similarity clustering.",
         tags: ["Cloudflare Workers", "D1", "TypeScript", "React"],
-        image: "https://picsum.photos/seed/no2/600/400"
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+        github: "https://github.com/Alanperry1/feedflow"
     },
     {
-        title: "Eye Prescription System",
-        desc: "Developed an AI-powered eye prescription management system integrating Mailjet and Perplexity AI for automated communication and insight generation.",
-        tags: ["React", "Node.js", "Express", "PostgreSQL"],
-        image: "https://picsum.photos/seed/liquid/600/400"
+        title: "ReqSim",
+        desc: "Lightweight Python package for benchmarking and load testing APIs using async HTTP requests — instant performance insights without heavy tools like JMeter.",
+        tags: ["Python", "asyncio", "httpx", "MIT License"],
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+        github: "https://github.com/Alanperry1/ReqSim"
+    },
+    {
+        title: "AstroML Gamma Classifier",
+        desc: "Classifies cosmic particle events from the MAGIC Gamma Telescope into gamma rays or hadrons using KNN, Naïve Bayes, Logistic Regression, and SVM.",
+        tags: ["Python", "scikit-learn", "Jupyter", "ML"],
+        image: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80",
+        github: "https://github.com/Alanperry1/AstroML-Gamma-vs-Hadron-Classifier"
+    },
+    {
+        title: "Refraction — Eye Prescription System",
+        desc: "Comprehensive eye prescription management dashboard for optometrists to create, view, edit, and share patient records, with Mailjet and Perplexity AI integration.",
+        tags: ["TypeScript", "React", "Node.js", "PostgreSQL"],
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        github: "https://github.com/Alanperry1/Refraction-Team"
+    },
+    {
+        title: "Stochastic Portfolio Valuation",
+        desc: "Python financial modeling tool using stochastic simulations to estimate portfolio value trajectories, visualize uncertainty, and analyze risk over time.",
+        tags: ["Python", "NumPy", "Matplotlib", "Monte Carlo"],
+        image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&q=80",
+        github: "https://github.com/Alanperry1/Stochastic-Portfolio-Valuation-Model"
     },
     {
         title: "Forex Trading Bot",
-        desc: "Built a trading system that analyzed 1.5GB of forex data to identify 1.5K+ profitable setups and achieve 26% ROI.",
-        tags: ["NumPy", "Pandas", "Chart.js"],
-        image: "https://picsum.photos/seed/echo/600/400"
+        desc: "Trading system that analyzed 1.5GB of forex data to identify 1.5K+ profitable setups and achieve 26% ROI using pattern recognition and backtesting.",
+        tags: ["Python", "NumPy", "Pandas", "Chart.js"],
+        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
+        github: "https://github.com/Alanperry1/forex-bot"
     }
 ];
 
