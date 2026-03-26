@@ -5,7 +5,6 @@ const texts = [
     "Founding Engineer",
     "Open Source Contributor",
     "Machine Learning Researcher",
-    "Cybersecurity Student",
     "Full Stack Developer",
     "Product Builder"
 ];

@@ -155,6 +155,15 @@ function App() {
           />
         )}
 
+        {currentView === 'blogs' && (
+          <BlogPage
+            onNavigate={handleNavigate}
+            toggleTheme={toggleTheme}
+            isDark={isDark}
+            activeArticleId={activeArticle}
+          />
+        )}
+
         {currentView === 'contact' && (
           <ContactPage
             onNavigate={handleNavigate}

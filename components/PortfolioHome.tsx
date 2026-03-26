@@ -15,7 +15,7 @@ import { NativeTypewriter } from './ui/NativeTypewriter';
 
 
 import { NativeMagnetic } from './ui/NativeMagnetic';
-import profilePic from '../XPFP.jpg';
+import profilePic from '../XPFP.webp';
 import { SKILLS } from './ArraySkills';
 import { ProjectCard } from './ui/ProjectCard'; // Import new ProjectCard
 import { SkillsMarquee } from './ui/SkillsMarquee';
@@ -38,6 +38,7 @@ const SECTIONS = [
     { id: 'education', title: 'Education' },
     { id: 'activities', title: 'Activities' },
     { id: 'skills', title: 'Tech Stack' },
+    { id: 'articles', title: 'Research & Publications' },
     { id: 'projects', title: 'Projects' },
     { id: 'contact', title: 'Contact' },
 ];
@@ -47,7 +48,7 @@ const EXPERIENCE_DATA = [
         role: "Founding Engineer",
         company: "Georim",
         date: "Jun 2025 - Present",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+        logo: "/AppIcons/georim-logo.svg",
         desc: "Built end-to-end cloud systems for video delivery, reliability, and security at scale.",
         details: [
             "Built a CloudFront-based video processing pipeline with GitHub Actions to ECR and CloudWatch autoscaling, reducing latency to under 40ms.",
@@ -59,7 +60,7 @@ const EXPERIENCE_DATA = [
         role: "Open Source Contributor",
         company: "Meta",
         date: "Dec 2025 - Present",
-        logo: "https://cdn.simpleicons.org/meta/0866FF",
+        logo: "/AppIcons/meta-logo.svg",
         desc: "Contributed to Detectron2 by improving reliability, dependency hygiene, and observability.",
         details: [
             "Submitted 10+ pull requests with 2 merged into Detectron2 core modules.",
@@ -187,6 +188,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
     const triggerRef = useRef<HTMLHeadingElement>(null);
     const [activeSection, setActiveSection] = useState<string | null>('about');
     const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+    const [expandedPaper, setExpandedPaper] = useState<number | null>(null);
 
     // Scroll Spy Logic
     useEffect(() => {
@@ -319,7 +321,6 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                                                 "Founding Engineer",
                                                 "Machine Learning Researcher",
                                                 "Open Source Contributor",
-                                                "Cybersecurity Student",
                                                 "Full Stack Developer",
                                                 "Product Builder"
                                             ]}
@@ -467,6 +468,102 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                     {/* Integrated Tools Section */}
                     <div className="mt-0">
                         <ToolsDock />
+                    </div>
+                </section>
+
+                {/* --- RESEARCH & PUBLICATIONS --- */}
+                <section id="articles" className="mb-16 scroll-mt-32">
+                    <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                        Research & Publications
+                        <div className="h-[1px] flex-1 bg-gray-200 dark:bg-white/10" />
+                    </h2>
+                    <div className="flex flex-col gap-4">
+                        {/* Paper 1 — BEC Detection */}
+                        <div
+                            className="rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/[0.03] overflow-hidden cursor-pointer"
+                            onClick={() => setExpandedPaper(expandedPaper === 0 ? null : 0)}
+                        >
+                            <div className="p-5">
+                                <div className="flex items-center justify-between gap-2 mb-2">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-medium text-blue-500 bg-blue-50 dark:bg-blue-500/10 px-2 py-0.5 rounded-full">Research Publication</span>
+                                        <span className="text-xs text-gray-400">Oct 2025</span>
+                                    </div>
+                                    <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${expandedPaper === 0 ? 'rotate-180' : ''}`} />
+                                </div>
+                                <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1">Machine Learning-Based Detection of Business Email Compromise</h3>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">Comparative study of XGBoost, LightGBM, CatBoost, Random Forest, and stacking ensembles for BEC detection with psycholinguistic features.</p>
+                            </div>
+                            <AnimatePresence>
+                                {expandedPaper === 0 && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: 'auto', opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="px-5 pb-5 border-t border-gray-100 dark:border-white/10 pt-4">
+                                            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Abstract</p>
+                                            <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                                Business Email Compromise (BEC) attacks constitute one of the most financially damaging cyber threats, resulting in global losses exceeding 2.7 billion USD annually according to the FBI Internet Crime Complaint Center. Unlike conventional phishing attacks that deploy malicious payloads or URLs, BEC employs sophisticated social engineering via carefully crafted language, posing substantial challenges to traditional signature-based detection systems. This work develops a robust machine learning framework for automated BEC detection, incorporating 58 specialized features extracted from email content, metadata, and behavioral attributes. We provide a formal mathematical formulation of the feature extraction process and evaluate five gradient boosting algorithms — XGBoost, LightGBM, CatBoost, Random Forest, and a stacking ensemble — on the Kaggle Fraud Email Dataset (9,239 samples). The dataset undergoes an 80/20 stratified split to preserve class distribution. CatBoost attains the highest performance, with 97.29% accuracy, 97.29% F1-score, and 99.55% AUC-ROC. We employ McNemar's test to confirm statistical significance (χ² = 7.52, p &lt; 0.01) and utilize SHAP (SHapley Additive exPlanations) to isolate linguistic metrics — specifically text entropy and readability — as primary discriminators. Furthermore, we present a computational complexity analysis demonstrating that our pipeline operates with O(L) linear complexity relative to email length, achieving sub-10ms inference latency suitable for real-time SIEM integration. The framework outperforms existing benchmarks by 8.8% in F1-score, establishing a new baseline for content-centric threat detection.
+                                            </p>
+                                            <a
+                                                href="https://www.researchgate.net/publication/398019660_Machine_Learning-Based_Detection_of_Business_Email_Compromise_A_Comparative_Analysis_of_Gradient_Boosting_Techniques"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={(e) => e.stopPropagation()}
+                                                className="inline-flex items-center gap-1.5 mt-4 text-xs font-medium text-blue-500 hover:text-blue-600 transition-colors"
+                                            >
+                                                <FileText className="w-3.5 h-3.5" />
+                                                View Publication
+                                                <ArrowUpRight className="w-3 h-3" />
+                                            </a>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Paper 2 — Biosignal Uncertainty */}
+                        <div
+                            className="rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/[0.03] overflow-hidden cursor-pointer"
+                            onClick={() => setExpandedPaper(expandedPaper === 1 ? null : 1)}
+                        >
+                            <div className="p-5">
+                                <div className="flex items-center justify-between gap-2 mb-2">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-medium text-amber-500 bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 rounded-full">Research in Progress</span>
+                                        <span className="text-xs text-gray-400">2026</span>
+                                    </div>
+                                    <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${expandedPaper === 1 ? 'rotate-180' : ''}`} />
+                                </div>
+                                <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1">Explain, Explain, Explain: Uncertainty–Explanation Alignment for EEG Models Under Artifact and Explainer Perturbations</h3>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">Introduces a recalibration framework that gates model attributions on predictive uncertainty to reduce misleading explanations under noisy real-world signals.</p>
+                            </div>
+                            <AnimatePresence>
+                                {expandedPaper === 1 && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: 'auto', opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="px-5 pb-5 border-t border-gray-100 dark:border-white/10 pt-4">
+                                            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Abstract</p>
+                                            <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                                Perturbation-based attribution methods are widely adopted to make AI predictions transparent, yet no standard mechanism exists to verify whether a given explanation is valid — that is, whether the model's predictive basis was reliable at the moment the explanation was generated. We argue that explanations should be treated as safety-critical outputs subject to an explicit validity condition: an attribution map is trustworthy only when the model is sufficiently certain under the very perturbations the explainer applies. We formalise this as a transparency audit protocol and instantiate it on EEG-based brain–computer interfaces, a domain where physiological artefacts (sensor dropout, ocular and muscle interference, line noise, bandpass mismatch) provide a controlled, interpretable test bed for studying explanation failures under distributional shift. Our audit introduces three measurable transparency diagnostics — uncertainty–faithfulness alignment (ρ<sub>align</sub>), a monotonicity score (M), and a misalignment rate that quantifies the fraction of trials where the model is uncertain yet the attribution is sharply concentrated — and proposes abstain-to-explain, a transparency control that withholds attribution maps when predictive entropy exceeds a calibrated threshold. Experiments on the BCI Competition IV 2a dataset with two CNN architectures and four uncertainty quantification methods demonstrate that deep ensembles produce the most audit-compliant explanations, and that the abstain-to-explain policy eliminates the majority of sharp-but-wrong attributions. This work is not optimised for decoding accuracy; we intentionally use conservative preprocessing to preserve artefacts for transparency auditing. The protocol generalises to any perturbation-based explainer and is positioned as a step toward accountable explanation pipelines in modern AI systems, including future applications to LLMs and agentic architectures.
+                                            </p>
+                                            <p className="inline-flex items-center gap-1.5 mt-4 text-xs font-medium text-amber-500">
+                                                <FileText className="w-3.5 h-3.5" />
+                                                Yet to be published
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
                     </div>
                 </section>
 

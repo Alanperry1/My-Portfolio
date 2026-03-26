@@ -14,6 +14,7 @@ import {
     X,
     Home,
     Briefcase,
+    FileText,
     Mail,
     Moon,
     Sun,
@@ -84,6 +85,14 @@ export function CommandPalette({ onNavigate, toggleTheme, isDark }: CommandPalet
             shortcut: "P",
             description: "See my recent work",
             action: () => onNavigate("projects"),
+        },
+        {
+            id: "blogs",
+            icon: FileText,
+            label: "Research & Publications",
+            shortcut: "B",
+            description: "View my published research papers",
+            action: () => onNavigate("blogs"),
         },
         {
             id: "contact",

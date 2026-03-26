@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="metaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0081FB"/>
+      <stop offset="100%" stop-color="#0064E0"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="0" fill="white"/>
+  <!-- Meta infinity symbol — two overlapping loops -->
+  <path d="
+    M100 100
+    C100 82 88 68 72 68
+    C50 68 34 86 34 106
+    C34 124 46 136 60 136
+    C76 136 88 122 100 100
+    C112 78 124 64 140 64
+    C158 64 166 80 166 96
+    C166 116 154 132 140 132
+    C126 132 114 118 100 100 Z
+  " fill="none" stroke="url(#metaGrad)" stroke-width="16" stroke-linecap="round"/>
+</svg>
