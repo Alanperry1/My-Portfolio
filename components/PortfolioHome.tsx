@@ -47,9 +47,9 @@ const SECTIONS = [
 const EXPERIENCE_DATA = [
     {
         role: "Founding Engineer",
-        company: "Georim",
+        company: "Stealth Startup",
         date: "Jun 2025 - Present",
-        logo: "/AppIcons/georim-logo.svg",
+        logo: "/AppIcons/stealth-startup-logo.svg",
         desc: "Built end-to-end cloud systems for video delivery, reliability, and security at scale.",
         details: [
             "Built a CloudFront-based video processing pipeline with GitHub Actions to ECR and CloudWatch autoscaling, reducing latency to under 40ms.",
@@ -700,7 +700,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                         <ProjectCard
                             index={5}
                             title="RAG Pipeline"
-                            description="Retrieval-augmented generation pipeline with document parsing, vector database management, and semantic retrieval to generate context-aware LLM responses."
+                            description="RAG system using LangChain with document parsing, FAISS vector storage, and semantic retrieval to generate context-aware LLM responses."
                             tags={["LangChain", "FAISS", "OpenAI API", "Python"]}
                             imageUrl="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80"
                             githubUrl="https://github.com/Alanperry1/RAG-Pipeline"
@@ -724,7 +724,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                         <ProjectCard
                             index={7}
                             title="Forex Trading Bot"
-                            description="Trading system that analyzed 1.5GB of forex data to identify 1.5K+ profitable setups and achieve 26% ROI using pattern recognition and backtesting."
+                            description="Autonomous forex bot with a 3-layer AI consensus engine (Claude, RandomForest, PPO RL) trading 10 pairs on OANDA with live risk management and dashboard."
                             tags={["Python", "NumPy", "Pandas", "Chart.js"]}
                             imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
                             githubUrl="https://github.com/Alanperry1/forex-bot"
@@ -778,9 +778,6 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
 
                             {/* Split Layout */}
                             <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full border-t border-gray-100 dark:border-white/5 pt-6">
-                                <div className="text-sm font-medium text-gray-600 dark:text-gray-400 tracking-wide order-1 md:order-2">
-                                    © {new Date().getFullYear()}. Engineered with Soul.
-                                </div>
                             </div>
                         </div>
                     </div>

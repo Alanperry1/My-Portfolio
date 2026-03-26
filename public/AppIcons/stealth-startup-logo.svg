@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Black circle background -->
+  <circle cx="100" cy="100" r="100" fill="#000000"/>
+  <!-- Geometric faceted upward arrow / chevron -->
+  <!-- Left wing bottom -->
+  <polygon points="100,60 60,130 80,130" fill="#555555"/>
+  <!-- Left wing top face -->
+  <polygon points="100,60 80,130 100,110" fill="#888888"/>
+  <!-- Right wing top face -->
+  <polygon points="100,60 100,110 120,130" fill="#6a6a6a"/>
+  <!-- Right wing bottom -->
+  <polygon points="100,60 120,130 140,130" fill="#444444"/>
+  <!-- Center bottom notch left -->
+  <polygon points="80,130 100,110 100,145" fill="#777777"/>
+  <!-- Center bottom notch right -->
+  <polygon points="100,110 120,130 100,145" fill="#555555"/>
+</svg>

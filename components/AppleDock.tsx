@@ -19,7 +19,7 @@ export const AppleDock: React.FC<AppleDockProps> = ({ visible, onNavigate, toggl
   // Map icons to the new Animated Components
   const items = [
     { title: 'Home', icon: HomeIcon, onClick: () => { triggerHaptic(); onNavigate('home'); } },
-    { title: 'GitHub', icon: GithubIcon, onClick: () => { triggerHaptic(); window.open('https://github.com', '_blank'); } },
+    { title: 'GitHub', icon: GithubIcon, onClick: () => { triggerHaptic(); window.open('https://github.com/Alanperry1', '_blank'); } },
     {
       title: isDark ? 'Light Mode' : 'Dark Mode',
       icon: isDark ? BrightnessDownIcon : MoonIcon,

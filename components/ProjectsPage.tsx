@@ -47,11 +47,11 @@ const PROJECTS = [
         github: "https://github.com/Alanperry1/AstroML-Gamma-vs-Hadron-Classifier"
     },
     {
-        title: "Refraction — Eye Prescription System",
-        desc: "Comprehensive eye prescription management dashboard for optometrists to create, view, edit, and share patient records, with Mailjet and Perplexity AI integration.",
-        tags: ["TypeScript", "React", "Node.js", "PostgreSQL"],
-        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        github: "https://github.com/Alanperry1/Refraction-Team"
+        title: "RAG Pipeline",
+        desc: "RAG system using LangChain with document parsing, FAISS vector storage, and semantic retrieval to generate context-aware LLM responses over custom local data.",
+        tags: ["LangChain", "FAISS", "OpenAI API", "Python"],
+        image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80",
+        github: "https://github.com/Alanperry1/RAG-Pipeline"
     },
     {
         title: "Stochastic Portfolio Valuation",
@@ -62,7 +62,7 @@ const PROJECTS = [
     },
     {
         title: "Forex Trading Bot",
-        desc: "Trading system that analyzed 1.5GB of forex data to identify 1.5K+ profitable setups and achieve 26% ROI using pattern recognition and backtesting.",
+        desc: "Autonomous forex bot with a 3-layer AI consensus engine (Claude, RandomForest, PPO RL) trading 10 pairs on OANDA with live risk management and dashboard.",
         tags: ["Python", "NumPy", "Pandas", "Chart.js"],
         image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
         github: "https://github.com/Alanperry1/forex-bot"
