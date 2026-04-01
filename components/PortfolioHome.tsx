@@ -639,98 +639,122 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <ProjectCard
                             index={0}
-                            title="SecureRAG"
-                            description="Prompt injection & data poisoning detection layer for RAG pipelines with entropy-based anomaly scoring, confidence gating, and FastAPI serving."
-                            tags={["Python", "FastAPI", "LangChain", "FAISS"]}
-                            imageUrl="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
-                            githubUrl="https://github.com/Alanperry1/SecureRAG"
-                            stars={35}
+                            title="Lexin Compiler"
+                            description="A statically-typed, C-superset language with a full compiler pipeline that targets C99."
+                            tags={["Rust", "Compiler", "C99", "Systems Programming"]}
+                            imageUrl="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/lexin-compiler"
+                            stars={0}
                             isDimmed={hoveredProject !== null && hoveredProject !== 0}
                             onHover={() => setHoveredProject(0)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={1}
-                            title="Distributed Key-Value Store"
-                            description="Dynamo-inspired distributed KV store in Rust with consistent hashing, tunable quorum replication, vector-clock versioning, and SWIM gossip-based failure detection."
-                            tags={["Rust", "Tokio", "gRPC", "Protocol Buffers"]}
-                            imageUrl="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80"
-                            githubUrl="https://github.com/Alanperry1/rkv"
-                            stars={48}
+                            title="Neural Pricer"
+                            description="Neural network pipeline for pricing American-style equity options using deep learning."
+                            tags={["Python", "PyTorch", "Options Pricing", "Finance"]}
+                            imageUrl="https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/Neural-Pricer"
+                            stars={0}
                             isDimmed={hoveredProject !== null && hoveredProject !== 1}
                             onHover={() => setHoveredProject(1)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={2}
-                            title="FeedFlow"
-                            description="AI-powered customer feedback analytics built entirely on Cloudflare's Developer Platform with sentiment analysis and similarity clustering."
-                            tags={["Cloudflare Workers", "D1", "TypeScript"]}
-                            imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
-                            githubUrl="https://github.com/Alanperry1/feedflow"
-                            stars={95}
+                            title="SecureRAG"
+                            description="Prompt injection & data poisoning detection layer for RAG pipelines with entropy-based anomaly scoring, confidence gating, and FastAPI serving."
+                            tags={["Python", "FastAPI", "LangChain", "FAISS"]}
+                            imageUrl="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/SecureRAG"
+                            stars={35}
                             isDimmed={hoveredProject !== null && hoveredProject !== 2}
                             onHover={() => setHoveredProject(2)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={3}
-                            title="ReqSim"
-                            description="Lightweight Python package for benchmarking and load testing APIs using async HTTP requests — instant performance insights without heavy tools."
-                            tags={["Python", "asyncio", "httpx", "MIT"]}
-                            imageUrl="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
-                            githubUrl="https://github.com/Alanperry1/ReqSim"
-                            stars={18}
+                            title="Distributed Key-Value Store"
+                            description="Dynamo-inspired distributed KV store in Rust with consistent hashing, tunable quorum replication, vector-clock versioning, and SWIM gossip-based failure detection."
+                            tags={["Rust", "Tokio", "gRPC", "Protocol Buffers"]}
+                            imageUrl="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/rkv"
+                            stars={48}
                             isDimmed={hoveredProject !== null && hoveredProject !== 3}
                             onHover={() => setHoveredProject(3)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={4}
-                            title="AstroML Gamma Classifier"
-                            description="Classifies cosmic particle events from the MAGIC Gamma Telescope into gamma rays or hadrons using KNN, Naïve Bayes, Logistic Regression, and SVM."
-                            tags={["Python", "scikit-learn", "Jupyter"]}
-                            imageUrl="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80"
-                            githubUrl="https://github.com/Alanperry1/AstroML-Gamma-vs-Hadron-Classifier"
-                            stars={12}
+                            title="FeedFlow"
+                            description="AI-powered customer feedback analytics built entirely on Cloudflare's Developer Platform with sentiment analysis and similarity clustering."
+                            tags={["Cloudflare Workers", "D1", "TypeScript"]}
+                            imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/feedflow"
+                            stars={95}
                             isDimmed={hoveredProject !== null && hoveredProject !== 4}
                             onHover={() => setHoveredProject(4)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={5}
-                            title="RAG Pipeline"
-                            description="RAG system using LangChain with document parsing, FAISS vector storage, and semantic retrieval to generate context-aware LLM responses."
-                            tags={["LangChain", "FAISS", "OpenAI API", "Python"]}
-                            imageUrl="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80"
-                            githubUrl="https://github.com/Alanperry1/RAG-Pipeline"
-                            stars={22}
+                            title="ReqSim"
+                            description="Lightweight Python package for benchmarking and load testing APIs using async HTTP requests — instant performance insights without heavy tools."
+                            tags={["Python", "asyncio", "httpx", "MIT"]}
+                            imageUrl="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/ReqSim"
+                            stars={18}
                             isDimmed={hoveredProject !== null && hoveredProject !== 5}
                             onHover={() => setHoveredProject(5)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={6}
-                            title="Stochastic Portfolio Valuation"
-                            description="Financial modeling tool using stochastic simulations to estimate portfolio value trajectories, visualize uncertainty, and analyze risk over time."
-                            tags={["Python", "NumPy", "Matplotlib", "Monte Carlo"]}
-                            imageUrl="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&q=80"
-                            githubUrl="https://github.com/Alanperry1/Stochastic-Portfolio-Valuation-Model"
-                            stars={14}
+                            title="AstroML Gamma Classifier"
+                            description="Classifies cosmic particle events from the MAGIC Gamma Telescope into gamma rays or hadrons using KNN, Naïve Bayes, Logistic Regression, and SVM."
+                            tags={["Python", "scikit-learn", "Jupyter"]}
+                            imageUrl="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/AstroML-Gamma-vs-Hadron-Classifier"
+                            stars={12}
                             isDimmed={hoveredProject !== null && hoveredProject !== 6}
                             onHover={() => setHoveredProject(6)}
                             onLeave={() => setHoveredProject(null)}
                         />
                         <ProjectCard
                             index={7}
+                            title="RAG Pipeline"
+                            description="RAG system using LangChain with document parsing, FAISS vector storage, and semantic retrieval to generate context-aware LLM responses."
+                            tags={["LangChain", "FAISS", "OpenAI API", "Python"]}
+                            imageUrl="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/RAG-Pipeline"
+                            stars={22}
+                            isDimmed={hoveredProject !== null && hoveredProject !== 7}
+                            onHover={() => setHoveredProject(7)}
+                            onLeave={() => setHoveredProject(null)}
+                        />
+                        <ProjectCard
+                            index={8}
+                            title="Stochastic Portfolio Valuation"
+                            description="Financial modeling tool using stochastic simulations to estimate portfolio value trajectories, visualize uncertainty, and analyze risk over time."
+                            tags={["Python", "NumPy", "Matplotlib", "Monte Carlo"]}
+                            imageUrl="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&q=80"
+                            githubUrl="https://github.com/Alanperry1/Stochastic-Portfolio-Valuation-Model"
+                            stars={14}
+                            isDimmed={hoveredProject !== null && hoveredProject !== 8}
+                            onHover={() => setHoveredProject(8)}
+                            onLeave={() => setHoveredProject(null)}
+                        />
+                        <ProjectCard
+                            index={9}
                             title="Forex Trading Bot"
                             description="Autonomous forex bot with a 3-layer AI consensus engine (Claude, RandomForest, PPO RL) trading 10 pairs on OANDA with live risk management and dashboard."
                             tags={["Python", "NumPy", "Pandas", "Chart.js"]}
                             imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
                             githubUrl="https://github.com/Alanperry1/forex-bot"
                             stars={26}
-                            isDimmed={hoveredProject !== null && hoveredProject !== 7}
-                            onHover={() => setHoveredProject(7)}
+                            isDimmed={hoveredProject !== null && hoveredProject !== 9}
+                            onHover={() => setHoveredProject(9)}
                             onLeave={() => setHoveredProject(null)}
                         />
                     </div>

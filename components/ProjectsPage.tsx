@@ -12,57 +12,71 @@ interface ProjectsPageProps {
 
 const PROJECTS = [
     {
+        title: "Lexin Compiler",
+        desc: "A statically-typed, C-superset language with a full compiler pipeline that targets C99.",
+        tags: ["Rust", "Compiler", "C99", "Systems Programming"],
+        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80",
+        github: "https://github.com/Alanperry1/lexin-compiler"
+    },
+    {
+        title: "Neural Pricer",
+        desc: "Neural network pipeline for pricing American-style equity options using deep learning.",
+        tags: ["Python", "PyTorch", "Options Pricing", "Finance"],
+        image: "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=800&q=80",
+        github: "https://github.com/Alanperry1/Neural-Pricer"
+    },
+    {
         title: "SecureRAG",
-        desc: "Prompt injection & data poisoning detection layer for RAG pipelines with entropy-based anomaly scoring, embedding confidence gating, and FastAPI serving to block malicious context before LLM inference.",
+        desc: "Prompt injection & data poisoning detection layer for RAG pipelines with entropy-based anomaly scoring and FastAPI serving.",
         tags: ["Python", "FastAPI", "LangChain", "FAISS"],
         image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80",
         github: "https://github.com/Alanperry1/SecureRAG"
     },
     {
         title: "Distributed Key-Value Store",
-        desc: "Dynamo-inspired distributed KV store in Rust with consistent hashing, tunable quorum replication, vector-clock versioning, and SWIM gossip-based failure detection.",
+        desc: "Dynamo-inspired KV store in Rust with consistent hashing, quorum replication, and SWIM gossip failure detection.",
         tags: ["Rust", "Tokio", "gRPC", "Protocol Buffers"],
         image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
         github: "https://github.com/Alanperry1/rkv"
     },
     {
         title: "FeedFlow",
-        desc: "AI-powered customer feedback analytics built entirely on Cloudflare's Developer Platform with sentiment analysis, multi-factor priority scoring, and similarity clustering.",
+        desc: "AI-powered customer feedback analytics on Cloudflare with sentiment analysis, priority scoring, and similarity clustering.",
         tags: ["Cloudflare Workers", "D1", "TypeScript", "React"],
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
         github: "https://github.com/Alanperry1/feedflow"
     },
     {
         title: "ReqSim",
-        desc: "Lightweight Python package for benchmarking and load testing APIs using async HTTP requests — instant performance insights without heavy tools like JMeter.",
+        desc: "Lightweight Python package for benchmarking and load testing APIs with async HTTP requests.",
         tags: ["Python", "asyncio", "httpx", "MIT License"],
         image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
         github: "https://github.com/Alanperry1/ReqSim"
     },
     {
         title: "AstroML Gamma Classifier",
-        desc: "Classifies cosmic particle events from the MAGIC Gamma Telescope into gamma rays or hadrons using KNN, Naïve Bayes, Logistic Regression, and SVM.",
+        desc: "Classifies cosmic particle events from the MAGIC Gamma Telescope into gamma rays or hadrons using KNN, Logistic Regression, and SVM.",
         tags: ["Python", "scikit-learn", "Jupyter", "ML"],
         image: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80",
         github: "https://github.com/Alanperry1/AstroML-Gamma-vs-Hadron-Classifier"
     },
     {
         title: "RAG Pipeline",
-        desc: "RAG system using LangChain with document parsing, FAISS vector storage, and semantic retrieval to generate context-aware LLM responses over custom local data.",
+        desc: "RAG system with document parsing, FAISS vector storage, and semantic retrieval for context-aware LLM responses.",
         tags: ["LangChain", "FAISS", "OpenAI API", "Python"],
         image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80",
         github: "https://github.com/Alanperry1/RAG-Pipeline"
     },
     {
         title: "Stochastic Portfolio Valuation",
-        desc: "Python financial modeling tool using stochastic simulations to estimate portfolio value trajectories, visualize uncertainty, and analyze risk over time.",
+        desc: "Financial modeling tool using Monte Carlo simulations to estimate portfolio trajectories and visualize risk over time.",
         tags: ["Python", "NumPy", "Matplotlib", "Monte Carlo"],
         image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&q=80",
         github: "https://github.com/Alanperry1/Stochastic-Portfolio-Valuation-Model"
     },
     {
         title: "Forex Trading Bot",
-        desc: "Autonomous forex bot with a 3-layer AI consensus engine (Claude, RandomForest, PPO RL) trading 10 pairs on OANDA with live risk management and dashboard.",
+        desc: "Autonomous forex bot with a 3-layer AI consensus engine trading 10 pairs on OANDA with live risk management.",
         tags: ["Python", "NumPy", "Pandas", "Chart.js"],
         image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
         github: "https://github.com/Alanperry1/forex-bot"
@@ -75,7 +89,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, toggleTh
     return (
         <>
             <DynamicNavigation
-                triggerRef={triggerRef}
+                triggerRef={triggerRef as React.RefObject<HTMLElement>}
                 toggleTheme={toggleTheme}
                 isDark={isDark}
                 onNavigate={onNavigate}
