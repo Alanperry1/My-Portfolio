@@ -46,6 +46,64 @@ const SECTIONS = [
 
 const EXPERIENCE_DATA = [
     {
+        role: "Open Source Contributor",
+        company: "OpenAI (Codex Actions) & Meta (Detectron2)",
+        date: "Dec 2025 - Present",
+        logo: "/AppIcons/meta-logo.svg",
+        desc: "Improving developer tooling, reliability, and CI/CD security in widely used open-source projects.",
+        details: [
+            "Improved Detectron2 debuggability by replacing bare assertions with typed exceptions and actionable error messages.",
+            "Hardened Codex CI/CD against command injection and added opt-in sticky pull-request status comments.",
+            "Prevented TOML corruption by replacing regex rewrites with idempotent marker-block removal and strict port validation."
+        ]
+    },
+    {
+        role: "Machine Learning Researcher",
+        company: "Argonne National Laboratory",
+        date: "Aug 2026 - Sep 2026",
+        logo: undefined,
+        desc: "Built and evaluated short-term energy-load forecasting pipelines in PyTorch.",
+        details: [
+            "Raised R² from 0.17 to 0.73 on a 5,500+ household energy dataset using grid and Bayesian hyperparameter search.",
+            "Benchmarked activations, optimizers, and architectures on BuildingsBench, reducing RMSE by 45%."
+        ]
+    },
+    {
+        role: "Software Engineer Intern",
+        company: "Uber",
+        date: "May 2026 - Aug 2026",
+        logo: "https://cdn.simpleicons.org/uber/09D3AC",
+        desc: "Built an AI-assisted runbook discovery and ticket automation system on AWS.",
+        details: [
+            "Created an AWS Bedrock and Lambda agent that saved 100+ engineering hours each month in ticket research and analysis.",
+            "Architected a serverless RAG pipeline over 25K+ internal pages, improving response accuracy by 75%.",
+            "Automated 30+ test, build, and deployment workflows using AWS CDK and TypeScript."
+        ]
+    },
+    {
+        role: "Software Engineer",
+        company: "Georim",
+        date: "Aug 2025 - Apr 2026",
+        logo: "/AppIcons/georim-logo.svg",
+        desc: "Shipped cloud video infrastructure, monitoring, and performance improvements.",
+        details: [
+            "Built a CloudFront video-processing system with CI/CD and autoscaling, saving $1.3K+ monthly and cutting latency below 40ms.",
+            "Improved frontend performance and moved media assets to Cloudflare R2 to reduce page-load and origin-storage costs.",
+            "Implemented Prometheus and Grafana monitoring and migrated core services to AWS for 10× peak-load capacity."
+        ]
+    },
+    {
+        role: "Machine Learning Engineer Intern",
+        company: "National Science Foundation",
+        date: "May 2025 - Jul 2025",
+        logo: "/AppIcons/nsf-logo.svg",
+        desc: "Developed real-time Business Email Compromise detection with psycholinguistic signals.",
+        details: [
+            "Built a gradient-boosting detection pipeline that improved accuracy by 8.8% for social-engineering phishing threats.",
+            "Co-authored a framework achieving 99.55% AUC-ROC with sub-10ms latency for real-time SIEM integration."
+        ]
+    },
+    {
         role: "Founding Engineer",
         company: "Stealth Startup",
         date: "Jun 2025 - Present",
@@ -55,18 +113,6 @@ const EXPERIENCE_DATA = [
             "Built a CloudFront-based video processing pipeline with GitHub Actions to ECR and CloudWatch autoscaling, reducing latency to under 40ms.",
             "Optimized Prisma migrations and indexing to cut average API response time from 480ms to 50ms.",
             "Migrated core services to AWS to support 10x peak load and improved production security through review of 50+ pull requests."
-        ]
-    },
-    {
-        role: "Open Source Contributor",
-        company: "Meta",
-        date: "Dec 2025 - Present",
-        logo: "/AppIcons/meta-logo.svg",
-        desc: "Contributed to Detectron2 by improving reliability, dependency hygiene, and observability.",
-        details: [
-            "Submitted 10+ pull requests with 2 merged into Detectron2 core modules.",
-            "Filed 21 dependency-related issues spanning security, deprecated APIs, and CI/CD improvements.",
-            "Implemented logging across 6 modules to improve debugging and error traceability."
         ]
     },
     {
@@ -82,9 +128,21 @@ const EXPERIENCE_DATA = [
         ]
     },
     {
+        role: "Open Source Contributor",
+        company: "Meta",
+        date: "Dec 2025 - Present",
+        logo: "/AppIcons/meta-logo.svg",
+        desc: "Contributed to Detectron2 by improving reliability, dependency hygiene, and observability.",
+        details: [
+            "Submitted 10+ pull requests with 2 merged into Detectron2 core modules.",
+            "Filed 21 dependency-related issues spanning security, deprecated APIs, and CI/CD improvements.",
+            "Implemented logging across 6 modules to improve debugging and error traceability."
+        ]
+    },
+    {
         role: "Machine Learning Researcher",
         company: "National Science Foundation",
-        date: "Aug 2025 – Oct 2025",
+        date: "Aug 2025 - Oct 2025",
         logo: "/AppIcons/nsf-logo.svg",
         desc: "Built an ML pipeline for Business Email Compromise detection with psycholinguistic features.",
         details: [
@@ -95,7 +153,7 @@ const EXPERIENCE_DATA = [
     {
         role: "Product Manager",
         company: "Alliance4AI",
-        date: "Dec 2024 – Apr 2025",
+        date: "Dec 2024 - Apr 2025",
         logo: "/AppIcons/alliance4ai-logo.svg",
         desc: "Led product development for website redesign across a cross-functional team.",
         details: [
@@ -106,7 +164,7 @@ const EXPERIENCE_DATA = [
     {
         role: "Software Engineering Intern",
         company: "Ideation Axis",
-        date: "Jan 2024 – Jul 2024",
+        date: "Jan 2024 - Jul 2024",
         logo: "/AppIcons/ideation-axis-logo.svg",
         desc: "Built MERN stack web apps and deployed microservices on AWS for clients at scale.",
         details: [
@@ -122,6 +180,18 @@ const ACTIVITIES_DATA = [
         org: "Association for Computing Machinery (Grambling Chapter)",
         logo: "https://cdn.simpleicons.org/acm/0085CA",
         bullets: ["Led workshops, hackathons, and collaboration events to improve technical skills among members."]
+    },
+    {
+        title: "Peer Reviewer",
+        org: "ICANN 2026",
+        logo: "/AppIcons/gsu-seal.svg",
+        bullets: ["Reviewed four machine-learning papers, evaluating methodology, validity, and technical feedback."]
+    },
+    {
+        title: "Data for Good Hackathon",
+        org: "JPMorgan Chase & Co.",
+        logo: "https://cdn.simpleicons.org/jpmorganchase/0066B3",
+        bullets: ["Built a crime-intelligence pipeline across 80K+ Chicago and Philadelphia incidents, using XGBoost and transfer learning to forecast Delaware risk."]
     },
     {
         title: "Uber Career Prep Fellow",
@@ -182,6 +252,41 @@ const ACTIVITIES_DATA = [
         org: "Accenture",
         logo: "https://cdn.simpleicons.org/accenture/A100FF",
         bullets: ["Completed Accenture's Elevate to Innovate externship program focused on technology consulting and innovation."]
+    }
+];
+
+const RESEARCH_DATA = [
+    {
+        type: "Preprint",
+        year: "May 2026",
+        title: "VLM: Variance Landscape Mapping for Heteroskedastic Reward Signals in Reinforcement Learning",
+        summary: "A lightweight framework that separates aleatoric from epistemic uncertainty to make reinforcement-learning exploration more reliable under uneven reward noise.",
+        abstract: "VLM estimates per-action reward variance online with Welford accumulators, applies a corrected exploration bonus, and uses an exploitation gate once variance stabilizes. It is evaluated across synthetic bandits, gridworlds, DQN, and real-world click-log data.",
+        href: "https://www.researchgate.net/publication/403514064_VLM_Variance_Landscape_Mapping_for_Heteroskedastic_Reward_Signals_in_Reinforcement_Learning"
+    },
+    {
+        type: "Research",
+        year: "Apr 2026",
+        title: "HELIX: A Multi-Method Framework for Heteroskedasticity Detection",
+        summary: "A multi-method approach to detecting heteroskedasticity that addresses limitations of standard linear-regression diagnostics.",
+        abstract: "HELIX investigates heteroskedasticity detection beyond a single global test, with methods designed to remain useful when variance relationships are nonlinear or sample sizes are limited.",
+        href: "https://www.researchgate.net/publication/403504069_HELIX_A_Multi-Method_Framework_for_Heteroskedasticity_Detection"
+    },
+    {
+        type: "Conference Paper",
+        year: "Mar 2026",
+        title: "Explain, Explain, Explain: Uncertainty-Explanation Alignment for EEG Models Under Artefact and Explainer Perturbations",
+        summary: "A safety-focused framework for testing when AI explanations remain trustworthy under noisy biosignal conditions.",
+        abstract: "The work treats explanations as safety-critical outputs, auditing whether predictive uncertainty aligns with perturbation-based attribution methods and proposing an abstain-to-explain control for unreliable cases.",
+        href: "https://www.researchgate.net/publication/404395096_Explain_Explain_Explain_Uncertainty-Explanation_Alignment_for_EEG_Models_Under_Artefact_and_Explainer_Perturbations"
+    },
+    {
+        type: "Research",
+        year: "Nov 2025",
+        title: "Machine Learning-Based Detection of Business Email Compromise: A Comparative Analysis of Gradient Boosting Techniques",
+        summary: "Comparative study of gradient-boosting methods for Business Email Compromise detection using psycholinguistic features.",
+        abstract: "The framework evaluates XGBoost, LightGBM, CatBoost, Random Forest, and stacking ensembles for content-centric BEC detection, with real-time SIEM deployment as a target use case.",
+        href: "https://www.researchgate.net/publication/398019660_Machine_Learning-Based_Detection_of_Business_Email_Compromise_A_Comparative_Analysis_of_Gradient_Boosting_Techniques"
     }
 ];
 
@@ -334,7 +439,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
 
                                     <div className="prose dark:prose-invert prose-gray max-w-lg mb-6">
                                         <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base text-pretty">
-                                            I'm a Junior at Grambling State University studying Computer Science and Cybersecurity <LocationIndicator />. I build at the intersection of machine learning, cybersecurity, and systems engineering, with experience ranging from fine-tuning large language models to shipping production infrastructure. I've published two research papers, competed at HackMIT, and currently serve as a Founding Engineer, Open Source Contributor at Meta, and Research Assistant at Grambling State.
+                                            I'm a Junior at Grambling State University studying Computer Science and Cybersecurity <LocationIndicator />. I build at the intersection of machine learning, cybersecurity, and systems engineering, with experience ranging from fine-tuning large language models to shipping production infrastructure. I've published two research papers, competed at HackMIT, and currently serve as a Founding Engineer, Open Source Contributor at Meta, and Research Assistant at Grambling State. I also bring production RAG experience from Uber, energy forecasting research from Argonne National Laboratory, and four ResearchGate publications.
                                         </p>
                                     </div>
                                 </div>
@@ -408,6 +513,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                             <p className="text-sm text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
                                 Bachelor of Science in Computer Science &amp; Cybersecurity
                             </p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Expected May 2028 · Dean’s List (3×) · Academic Achievement Scholar · Super1 Endowed Scholar</p>
                         </div>
                     </motion.div>
                 </section>
@@ -626,6 +732,19 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
                                 )}
                             </AnimatePresence>
                         </div>
+                        {RESEARCH_DATA.slice(0, 2).map((paper) => (
+                            <a key={paper.href} href={paper.href} target="_blank" rel="noopener noreferrer" className="group rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/[0.03] p-5 hover:border-blue-300 dark:hover:border-blue-500/40 transition-colors">
+                                <div className="flex items-center justify-between gap-2 mb-2">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-medium text-blue-500 bg-blue-50 dark:bg-blue-500/10 px-2 py-0.5 rounded-full">{paper.type}</span>
+                                        <span className="text-xs text-gray-400">{paper.year}</span>
+                                    </div>
+                                    <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                                </div>
+                                <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1">{paper.title}</h3>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">{paper.summary}</p>
+                            </a>
+                        ))}
                     </div>
                 </section>
 
@@ -920,4 +1039,3 @@ const SocialDock = () => {
         </div>
     );
 };
-
