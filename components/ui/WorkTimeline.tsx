@@ -8,13 +8,14 @@ export interface ExperienceItemProps {
     role: string;
     company: string;
     date: string;
+    location?: string;
     desc: string;
     details?: string[];
     logo?: string;
     index?: number;
 }
 
-const TimelineItem = ({ role, company, date, desc, details, logo, index }: ExperienceItemProps) => {
+const TimelineItem = ({ role, company, date, location, desc, details, logo, index }: ExperienceItemProps) => {
     return (
         <motion.div
             className="group relative flex gap-4 md:gap-6 pb-8 last:pb-0"
@@ -60,6 +61,11 @@ const TimelineItem = ({ role, company, date, desc, details, logo, index }: Exper
                             <Briefcase size={12} />
                             {role}
                         </div>
+                        {location && (
+                            <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                                {location}
+                            </div>
+                        )}
                     </div>
                 </div>
 

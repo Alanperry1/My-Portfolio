@@ -70,14 +70,14 @@ const EXPERIENCE_DATA = [
     },
     {
         role: "Software Engineer Intern",
-        company: "Uber",
+        company: "Georim",
         date: "May 2026 - Aug 2026",
-        logo: "https://cdn.simpleicons.org/uber/09D3AC",
-        desc: "Built an AI-assisted runbook discovery and ticket automation system on AWS.",
+        location: "Grambling, LA",
+        logo: "/AppIcons/georim-logo.svg",
+        desc: "Built GEO AI, an AI-powered event agent using AWS Bedrock, TypeScript, and Stripe MCP, automating event creation through voice/text commands and streamlining event discovery, ticket booking, and payments, reducing event setup time by 60%.",
         details: [
-            "Created an AWS Bedrock and Lambda agent that saved 100+ engineering hours each month in ticket research and analysis.",
-            "Architected a serverless RAG pipeline over 25K+ internal pages, improving response accuracy by 75%.",
-            "Automated 30+ test, build, and deployment workflows using AWS CDK and TypeScript."
+            "Integrated AWS Rekognition into a serverless video processing pipeline using Python, AWS Step Functions, and S3, automating detection of nudity and violent scenes in uploaded videos to reduce manual moderation workload and improve platform safety.",
+            "Implemented CI/CD Pipeline using AWS CDK & GitHub Actions, automating 30+ testing, building, & deployment workflows."
         ]
     },
     {
@@ -439,7 +439,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({ onNavigate, toggle
 
                                     <div className="prose dark:prose-invert prose-gray max-w-lg mb-6">
                                         <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base text-pretty">
-                                            I'm a Junior at Grambling State University studying Computer Science and Cybersecurity <LocationIndicator />. I build at the intersection of machine learning, cybersecurity, and systems engineering, with experience ranging from fine-tuning large language models to shipping production infrastructure. I've published two research papers, competed at HackMIT, and currently serve as a Founding Engineer, Open Source Contributor at Meta, and Research Assistant at Grambling State. I also bring production RAG experience from Uber, energy forecasting research from Argonne National Laboratory, and four ResearchGate publications.
+                                            I'm a Junior at Grambling State University studying Computer Science and Cybersecurity <LocationIndicator />. I build at the intersection of machine learning, cybersecurity, and systems engineering, with experience ranging from fine-tuning large language models to shipping production infrastructure. I've published two research papers, competed at HackMIT, and currently serve as a Founding Engineer, Open Source Contributor at Meta, and Research Assistant at Grambling State. I also bring AI-powered event automation experience from Georim, energy forecasting research from Argonne National Laboratory, and four ResearchGate publications.
                                         </p>
                                     </div>
                                 </div>
